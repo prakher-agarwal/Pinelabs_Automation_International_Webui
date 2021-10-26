@@ -1,0 +1,7 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/src/test/java/APITest/dummy.java
+src/test/java/TestBase/SslUtil.java
+src/test/java/TestBase/SslUtilDev.java
+target/
