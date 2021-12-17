@@ -1,39 +1,39 @@
 package TestBase;
 
-import API.Builders.UpiCallbackIcici;
-import AndroidUI.POM.PaymentsApp.PaymentsHomePage;
-import Base.CommonUtils;
 import API.Builders.GetJWTToken;
 import API.Builders.IrisGetParametersFromPineCloud;
+import AndroidUI.Base.BaseUtilsUI;
 import AndroidUI.POM.DeviceHomePage;
 import AndroidUI.POM.IrisApp.IrisHomePage;
 import AndroidUI.POM.IrisApp.IrisSettingsPage;
+import AndroidUI.POM.PaymentsApp.CommonHelperPage;
+import AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
+import AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
+import Base.CommonUtils;
 import org.testng.annotations.BeforeSuite;
 
 public class TestUtils {
-    public static GetJWTToken getJwtTokenInstance;
+
     public static IrisHomePage getIrisHomePageInstance;
     public static DeviceHomePage getDeviceHomePageInstance;
     public static IrisSettingsPage getIrisSettingsPage;
-    public static IrisGetParametersFromPineCloud getIrisGetParametersFromPineCloud;
 
-    public static PaymentsHomePage paymentsHomePageInstance;
+    public static PaymentsAmazonPayValidationsPage paymentsAmazonPayValidationsPage;
+
+    public static PaymentsUPIValidationsPage paymentsHomePageInstance;
 
     @BeforeSuite
     public void getInstances() {
+        BaseUtilsUI.setUpConnection();
 
-       // getJwtTokenInstance = getJwtTokenInstance();
         getIrisHomePageInstance = getIrisHomePageInstance();
         getIrisSettingsPage = getIrisSettingsPageInstance();
         getDeviceHomePageInstance = getDeviceHomePageInstance();
-        getIrisGetParametersFromPineCloud = getIrisGetParametersFromPineCloud();
+
 
     }
 
-    public static GetJWTToken getJwtTokenInstance(String request) {
-        getJwtTokenInstance= GetJWTToken.getInstance(request);
-        return getJwtTokenInstance;
-    }
+
 
     public IrisHomePage getIrisHomePageInstance() {
         getIrisHomePageInstance = IrisHomePage.getInstance();
@@ -50,19 +50,20 @@ public class TestUtils {
         return getDeviceHomePageInstance;
     }
 
-    public IrisGetParametersFromPineCloud getIrisGetParametersFromPineCloud() {
-        getIrisGetParametersFromPineCloud = IrisGetParametersFromPineCloud.getInstance();
-        return getIrisGetParametersFromPineCloud;
+
+    public PaymentsUPIValidationsPage getPaymentsUPIValidationInstance() {
+        return PaymentsUPIValidationsPage.getInstance();
     }
 
-    public PaymentsHomePage getPaymentsHomePageInstance() {
-        return PaymentsHomePage.getInstance();
+    public CommonHelperPage getCommonHelperPageInstance() {
+        return CommonHelperPage.getInstance();
     }
 
-    //
-//    public UpiCallbackIcici getUpicallbackIciciInstance(){
-//        return UpiCallbackIcici.getInstance();
-//    }
+    public PaymentsAmazonPayValidationsPage getPaymentsAmazonPayValidationsPage() {
+        return PaymentsAmazonPayValidationsPage.getInstance();
+    }
+
+
     // @AfterClass
     public void closeDbConnection() {
         CommonUtils.closeConnection();

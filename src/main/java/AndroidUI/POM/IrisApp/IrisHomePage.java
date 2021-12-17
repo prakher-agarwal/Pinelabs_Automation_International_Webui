@@ -26,7 +26,7 @@ public class IrisHomePage extends BaseUtilsUI {
     }
 
     public void navigateToSettings() {
-        clickOnElement(locatorProp.getProperty("SettingsIcon"));
+        clickOnElement(locatorProp.getProperty("settingsIcon"));
         System.out.println("Clicked on Settings icon");
     }
 

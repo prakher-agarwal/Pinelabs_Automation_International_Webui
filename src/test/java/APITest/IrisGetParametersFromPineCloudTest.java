@@ -1,14 +1,19 @@
 package APITest;
 
+import API.Builders.GetJWTToken;
+import API.Builders.IrisGetParametersFromPineCloud;
 import Base.CommonUtils;
 import API.Helpers.IrisAPIHelpers;
 import API.PojoFiles.GetJWTResponse;
-import TestBase.TestUtils;
+import TestBase.TestUtilAPI;
 import org.bson.Document;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class IrisGetParametersFromPineCloudTest extends TestUtils {
+public class IrisGetParametersFromPineCloudTest extends TestUtilAPI {
+
+    IrisGetParametersFromPineCloud irisGetParametersFromPineCloud;
     Document dbValues;
 
     public void db() {
@@ -16,35 +21,41 @@ public class IrisGetParametersFromPineCloudTest extends TestUtils {
 
     }
 
+    @BeforeClass
+    public void initialise() {
+
+    }
+
     @Test(description = "Validate the response when all the parameters are correct")
     public void getParamFromPineCloud_TC001() {
-        GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken();
-        TestUtils.getIrisGetParametersFromPineCloud.getRequestPojo().setHardwareid("0822398347");
-        TestUtils.getIrisGetParametersFromPineCloud.createAndExecute(getJWTResponse.getAccessToken());
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getBpclCloudUrl(), "https://bpcluatwap01.azurewebsites.net");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getPineCloudUrl(), "https://14.141.92.54:8202");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getAlpCloudUrl(), "http://122.160.150.44:9090");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getROid(), "180664");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getResMsg(), "Iris Basic Parameters Successfully feched from DB");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getVmsCloudUrl(), "https://api.vms.bpcl.in");
+        irisGetParametersFromPineCloud = getIrisGetParametersFromPineCloud(IrisGetParametersFromPineCloud.defaultRequest);
+        GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0820771204",  GetJWTToken.defaultrequest);
+        irisGetParametersFromPineCloud.getRequestPojo().setHardwareid("0820771204");
+        irisGetParametersFromPineCloud.createAndExecute(getJWTResponse.getAccessToken());
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getBpclCloudUrl(), "https://bpcluatwap01.azurewebsites.net");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getPineCloudUrl(), "https://14.141.92.54:8202");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getAlpCloudUrl(), "http://122.160.150.44:9090");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getROid(), "180664");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getResMsg(), "Iris Basic Parameters Successfully feched from DB");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getVmsCloudUrl(), "https://api.vms.bpcl.in");
     }
 
     @Test(description = "Validate the response when hardwareID is empty")
     public void getParamFromPineCloud_TC002() {
-        GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken();
-        TestUtils.getIrisGetParametersFromPineCloud.getRequestPojo().setHardwareid("");
-        TestUtils.getIrisGetParametersFromPineCloud.createAndExecute(getJWTResponse.getAccessToken());
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getResMsg(), "Client is blocked from PCUI end");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getErrCode(), "401");
+        //   GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken();
+        irisGetParametersFromPineCloud.getRequestPojo().setHardwareid("");
+        irisGetParametersFromPineCloud.createAndExecute("eyJhbGciOiJIUzI1NiJ9.VTJGc2RHVmtYMS9ya00vMGMzdWtKQytCNE9QWEdnV2pjV0gvREpsaXhTZTUvSDVpYWhWV29zZE5lZW1MVFlFSjV1OGF2MDlCU2JJTS9LSDZlZ0hBbHN0LzA1V3RWN3MrcllsSXFyYmtGczg9.HKIXBN-H4WYeN__D-cRvDUWQkCEM2wZ7Bj_Rne_isds");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getResMsg(), "Client is blocked from PCUI end");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getErrCode(), "401");
     }
 
     @Test(description = "Validate the response when hardwareID is not sent")
     public void getParamFromPineCloud_TC003() {
-        GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken();
-        TestUtils.getIrisGetParametersFromPineCloud.getRequestPojo().setHardwareid(null);
-        TestUtils.getIrisGetParametersFromPineCloud.createAndExecute(getJWTResponse.getAccessToken());
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getResMsg(), "Client is blocked from PCUI end");
-        Assert.assertEquals(TestUtils.getIrisGetParametersFromPineCloud.getResponsePojo().getErrCode(), "401");
+        //    GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken();
+        irisGetParametersFromPineCloud.getRequestPojo().setHardwareid(null);
+        irisGetParametersFromPineCloud.createAndExecute("eyJhbGciOiJIUzI1NiJ9.VTJGc2RHVmtYMS9ya00vMGMzdWtKQytCNE9QWEdnV2pjV0gvREpsaXhTZTUvSDVpYWhWV29zZE5lZW1MVFlFSjV1OGF2MDlCU2JJTS9LSDZlZ0hBbHN0LzA1V3RWN3MrcllsSXFyYmtGczg9.HKIXBN-H4WYeN__D-cRvDUWQkCEM2wZ7Bj_Rne_isds");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getResMsg(), "Client is blocked from PCUI end");
+        Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getErrCode(), "401");
     }
 
 

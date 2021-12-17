@@ -8,64 +8,65 @@ import org.testng.annotations.Test;
 
 public class GetJWTTest extends TestUtils {
     GetJWTToken getJWTToken;
+
     @BeforeClass
-    public void getInstances(){
-       getJWTToken=  GetJWTToken.getInstance(GetJWTToken.defaultrequest);
+    public void getInstances() {
+        getJWTToken = GetJWTToken.getInstance(GetJWTToken.defaultrequest);
     }
 
     @Test(description = "Validate the response when all the parameters are correct")
     public void getJWTToke_TC001() {
 
-        getJWTToken.getJwtRequest().setHardwareid("0822398347");
-        getJWTToken.getJwtRequest().setDevicesubtype("82");
+        getJWTToken.getRequest().setHardwareid(null);
+        getJWTToken.getRequest().setDevicesubtype("82");
         getJWTToken.createAndExecute();
-        String token = getJWTToken.getJWTResponse().getAccessToken();
+        String token = getJWTToken.getResponse().getAccessToken();
         System.out.println(token);
 
     }
 
     @Test(description = "Validate the response when hardwareID is not sent")
     public void getJWTToke_TC002() {
-        getJWTToken.getJwtRequest().setHardwareid(null);
-        getJWTToken.getJwtRequest().setDevicesubtype("82");
+        getJWTToken.getRequest().setHardwareid(null);
+        getJWTToken.getRequest().setDevicesubtype("82");
         getJWTToken.createAndExecute();
-        Assert.assertEquals(getJWTToken.getJWTResponse().getAccessToken(), "null");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getResMsg(), "Invalid Parameter request");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getErrCode(), "6");
+        Assert.assertEquals(getJWTToken.getResponse().getAccessToken(), "null");
+        Assert.assertEquals(getJWTToken.getResponse().getResMsg(), "Invalid Parameter request");
+        Assert.assertEquals(getJWTToken.getResponse().getErrCode(), "6");
 
     }
 
     @Test(description = "Validate the response when hardwareID is sent empty")
     public void getJWTToke_TC003() {
-        getJWTToken.getJwtRequest().setHardwareid("");
-        getJWTToken.getJwtRequest().setDevicesubtype("82");
+        getJWTToken.getRequest().setHardwareid("");
+        getJWTToken.getRequest().setDevicesubtype("82");
         getJWTToken.createAndExecute();
-        Assert.assertEquals(getJWTToken.getJWTResponse().getAccessToken(), "null");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getResMsg(), "Invalid Parameter request");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getErrCode(), "6");
+        Assert.assertEquals(getJWTToken.getResponse().getAccessToken(), "null");
+        Assert.assertEquals(getJWTToken.getResponse().getResMsg(), "Invalid Parameter request");
+        Assert.assertEquals(getJWTToken.getResponse().getErrCode(), "6");
 
 
     }
 
     @Test(description = "Validate the response when deviceSubType is sent empty")
     public void getJWTToke_TC004() {
-        getJWTToken.getJwtRequest().setHardwareid("0822398347");
-        getJWTToken.getJwtRequest().setDevicesubtype("");
+        getJWTToken.getRequest().setHardwareid("0822398347");
+        getJWTToken.getRequest().setDevicesubtype("");
         getJWTToken.createAndExecute();
-        Assert.assertEquals(getJWTToken.getJWTResponse().getAccessToken(), "null");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getResMsg(), "Invalid Parameter request");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getErrCode(), "6");
+        Assert.assertEquals(getJWTToken.getResponse().getAccessToken(), "null");
+        Assert.assertEquals(getJWTToken.getResponse().getResMsg(), "Invalid Parameter request");
+        Assert.assertEquals(getJWTToken.getResponse().getErrCode(), "6");
 
     }
 
     @Test(description = "Validate the response when deviceSubType is not sent ")
     public void getJWTToke_TC005() {
-        getJWTToken.getJwtRequest().setHardwareid("0822398347");
-        getJWTToken.getJwtRequest().setDevicesubtype(null);
+        getJWTToken.getRequest().setHardwareid("0822398347");
+        getJWTToken.getRequest().setDevicesubtype(null);
         getJWTToken.createAndExecute();
-        Assert.assertEquals(getJWTToken.getJWTResponse().getAccessToken(), "null");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getResMsg(), "Invalid Parameter request");
-        Assert.assertEquals(getJWTToken.getJWTResponse().getErrCode(), "6");
+        Assert.assertEquals(getJWTToken.getResponse().getAccessToken(), "null");
+        Assert.assertEquals(getJWTToken.getResponse().getResMsg(), "Invalid Parameter request");
+        Assert.assertEquals(getJWTToken.getResponse().getErrCode(), "6");
 
     }
 

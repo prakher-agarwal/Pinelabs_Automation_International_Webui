@@ -30,22 +30,27 @@ import java.time.Duration;
 import java.util.List;
 
 public class BaseUtilsUI {
-    URL url;
+    private static DesiredCapabilities caps;
+    static URL url;
     static AppiumDriver<MobileElement> driver;
-    DesiredCapabilities caps;
     static WebDriverWait wait;
 
-    private DesiredCapabilities setCapabilities() {
+    private static DesiredCapabilities setCapabilities() {
         caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("PLATFORM_NAME"));
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("PLATFORM_VERSION"));
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("DEVICE_NAME"));
         caps.setCapability(MobileCapabilityType.UDID, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("UDID"));
         caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("NEW_COMMAND_TIMEOUT"));
+        caps.setCapability("–session-override", true);
+        caps.setCapability(MobileCapabilityType.APPLICATION_NAME,"Payments");
+        caps.setCapability("fullReset", false);
+        caps.setCapability("noReset", true);
+        // caps.setCapability(“appActivity”,“com.android.settings.Settings”);
         return caps;
     }
 
-    public void setUpConnection() {
+    public static void setUpConnection() {
         caps = setCapabilities();
 
         try {
@@ -55,38 +60,40 @@ public class BaseUtilsUI {
             e.printStackTrace();
         }
         driver = new AndroidDriver<MobileElement>(url, caps);
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 30);
+
     }
 
     public MobileElement getElement(String locator) {
-        MobileElement element;
+        MobileElement element = null;
         String[] loc = getLocatorTypeAndValue(locator);
         String locatorType = loc[0].substring(1).toUpperCase();
         //System.out.println(locatorType);
         String locatorValue = loc[1];
         //System.out.println(locatorValue);
+
         switch (locatorType) {
             case "ID":
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
+                break;
             case "CLASSNAME":
                 element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(locatorValue)));
-                return element;
+                break;
             case "XPATH":
                 element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
-                return element;
+               break;
             case "ACCESSIBILITYID":
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                driver.findElementsByAccessibilityId(locatorValue);
+
             case "ANDROIDUIAUTOMATOR":
             case "iOS UI Automation":
             case "Android View Tag":
+
             default:
                 throw new NoSuchElementException("Please check the locator");
         }
+        return element;
+
+
     }
 
     public List<WebElement> getElements(String locator) {
@@ -123,10 +130,18 @@ public class BaseUtilsUI {
 
     public void clickOnElement(String locator) {
 
-        getElement(locator).click();
-     //   System.out.println("Clicked on " + locator);
+        if (isElementDisplayed(locator)) {
+           getElement(locator).click();
+        }
+        else
+            throw new NoSuchElementException("Element not found . Please check locator!" + locator);
+        //   System.out.println("Clicked on " + locator);
+    }
 
-
+    public void clickUsingJS(String locator){
+       WebElement element= getElement(locator);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", "//*[@text='UPI']");
     }
 
     public String getElementText(String locator) {
@@ -138,10 +153,13 @@ public class BaseUtilsUI {
         getElement(locator).clear();
         getElement(locator).sendKeys(value);
     }
-public void getsize(){
-    Dimension dimension = driver.manage().window().getSize();
-    System.out.println(dimension);
-}
+
+
+    public void getsize() {
+        Dimension dimension = driver.manage().window().getSize();
+        System.out.println(dimension);
+    }
+
     public void scrollDown() {
         Dimension dimension = driver.manage().window().getSize();
 
@@ -180,14 +198,18 @@ public void getsize(){
     }
 
     public boolean isElementDisplayed(String locator) {
+        try {
+            if (getElement(locator).isDisplayed()) {
+                return true;
+            }
 
-        if (getElement(locator).isDisplayed())
-            return true;
-        return false;
-
+        } catch (Exception nse) {
+            return false;
+        }
+        return true;
     }
 
-    public boolean isElementSelected(String locator) {
+        public boolean isElementSelected(String locator) {
         if (getElement(locator).isSelected())
             return true;
         return false;
@@ -202,7 +224,7 @@ public void getsize(){
 
     public void navigateBack() {
         driver.navigate().back();
-    }
+    } //9899293631
 
     public File takeScreenshot(String filePath) {
         TakesScreenshot scrShot = (TakesScreenshot) driver;
@@ -247,17 +269,25 @@ public void getsize(){
     }
 
     private static String decodeQRCode(BufferedImage qrCodeImage) throws NotFoundException {
-
+        Result result = null;
         LuminanceSource source = new BufferedImageLuminanceSource(qrCodeImage);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
-        Result result = null;
         try {
             result = new MultiFormatReader().decode(bitmap);
         } catch (com.google.zxing.NotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("Meta" +result.getResultMetadata());
-        return result.getText();
+        String qrtext = result.getText();
+        System.out.println("QR code text is : " + qrtext);
+        return qrtext;
+    }
+    public static void closeAppInstace(String appName){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+     driver.terminateApp("payments");
     }
 }

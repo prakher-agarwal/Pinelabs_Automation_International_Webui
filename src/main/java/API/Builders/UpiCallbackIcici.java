@@ -4,8 +4,8 @@ import API.Base.BaseUtilsAPI;
 import API.PojoFiles.UpiCallbackIciciRequest;
 import API.PojoFiles.UpiCallbackIciciResponse;
 import Constants.EnumsRepo;
+import Constants.URI;
 import io.restassured.response.Response;
-import org.omg.CORBA.Request;
 
 
 public class UpiCallbackIcici extends BaseUtilsAPI {
@@ -31,7 +31,7 @@ public class UpiCallbackIcici extends BaseUtilsAPI {
     public UpiCallbackIciciResponse createAndExecute() {
         request = javaObjectToString(upiCallbackIciciRequest);
         setMethod(EnumsRepo.methodName.POST);
-        Response response = execute(request, "/authorize");
+        Response response = execute(request, URI.upiCallback, URI.directSimulatorBaseYRL);
         upiCallbackIciciResponse = stringToJavaObject(response.asString(), UpiCallbackIciciResponse.class);
         return upiCallbackIciciResponse;
     }

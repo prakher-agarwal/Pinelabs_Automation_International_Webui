@@ -1,42 +1,44 @@
 package API.Builders;
 
 import API.Base.BaseUtilsAPI;
+import API.PojoFiles.*;
 import Constants.EnumsRepo;
-import API.PojoFiles.GetJWTRequest;
-import API.PojoFiles.GetJWTResponse;
+import Constants.URI;
 import io.restassured.response.Response;
 
 public class IrisUploadLubeSaleDetails extends BaseUtilsAPI {
-//    static IrisUploadLubeSaleDetails getJwtToken;
-//    GetJWTRequest getJwtTokenRequest;
-//    GetJWTResponse getJWTResponse;
-//    String request = "{\"hardwareid\":\"0821397985\",\"Devicesubtype\":\"82\"}";
-//
-//    private IrisUploadLubeSaleDetails() {
-//        if (getJwtTokenRequest == null)
-//            getJwtTokenRequest = new GetJWTRequest();
-//    }
-//
-//    public static IrisUploadLubeSaleDetails getInstance() {
-//        if (getJwtToken == null)
-//            getJwtToken = new IrisUploadLubeSaleDetails();
-//        return getJwtToken;
-//    }
-//
-//
-//    public GetJWTResponse createAndExecute() {
-//        request = javaObjectToString(getJwtTokenRequest);
-//        setMethod(EnumsRepo.methodName.POST);
-//        Response response = execute(request, "/auth/getJWTToken");
-//        getJWTResponse = stringToJavaObject(response.asString(), GetJWTResponse.class);
-//        return getJWTResponse;
-//    }
-//
-//    public GetJWTResponse getJWTResponse() {
-//        return getJWTResponse;
-//    }
-//
-//    public GetJWTRequest getJwtRequest() {
-//        return getJwtTokenRequest;
-//    }
+    static IrisUploadLubeSaleDetails irisUploadLubeSaleDetails;
+    IrisUploadLubeSaleDetailsRequest irisUploadLubeSaleDetailsRequest;
+    IrisUploadLubeSaleDetailsResponse irisUploadLubeSaleDetailsResponse;
+    public static String defaultRequest = "{\"HardwareId\":\"0822398347\",\"LubeCode\":\"OIL1234567\",\"Quantity\":1000,\"VoucherId\":\"12345678\",\"TotalAmount\":50000,\"Paymode\":\"CASH\",\"LubeSaleDateTime\":\"2021-11-14 20:35:41\",\"ROid\":\"180664\"}";
+    String request;
+
+    private IrisUploadLubeSaleDetails(String request) {
+        this.request = request;
+        irisUploadLubeSaleDetailsRequest = stringToJavaObject(this.request, IrisUploadLubeSaleDetailsRequest.class);
+    }
+
+    public static IrisUploadLubeSaleDetails getInstance(String request) {
+        if (irisUploadLubeSaleDetails == null)
+            irisUploadLubeSaleDetails = new IrisUploadLubeSaleDetails(request);
+        return irisUploadLubeSaleDetails;
+    }
+
+
+    public IrisUploadLubeSaleDetailsResponse createAndExecute(String token) {
+        request = javaObjectToString(irisUploadLubeSaleDetailsRequest);
+        setMethod(EnumsRepo.methodName.POST);
+        Response response = execute(request, URI.irisUploadLubeSaleDetails, URI.baseURL,token);
+        irisUploadLubeSaleDetailsResponse = stringToJavaObject(response.asString(), IrisUploadLubeSaleDetailsResponse.class);
+        return irisUploadLubeSaleDetailsResponse;
+    }
+
+    public IrisUploadLubeSaleDetailsResponse getResponse() {
+        return irisUploadLubeSaleDetailsResponse;
+    }
+
+    public IrisUploadLubeSaleDetailsRequest getRequest() {
+        return irisUploadLubeSaleDetailsRequest;
+    }
 }
+

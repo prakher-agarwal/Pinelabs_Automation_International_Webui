@@ -4,6 +4,7 @@ import API.Base.BaseUtilsAPI;
 import Constants.EnumsRepo;
 import API.PojoFiles.GetJWTRequest;
 import API.PojoFiles.GetJWTResponse;
+import Constants.URI;
 import io.restassured.response.Response;
 
 
@@ -16,8 +17,7 @@ public class GetJWTToken extends BaseUtilsAPI {
     public static String defaultrequest = "{\"hardwareid\":\"0821397985\",\"Devicesubtype\":\"82\"}";
     String request;
 
-
-    public GetJWTToken(String request) {
+    private GetJWTToken(String request) {
         this.request = request;
         getJwtTokenRequest = stringToJavaObject(this.request, GetJWTRequest.class);
     }
@@ -33,16 +33,16 @@ public class GetJWTToken extends BaseUtilsAPI {
     public GetJWTResponse createAndExecute() {
         request = javaObjectToString(getJwtTokenRequest);
         setMethod(EnumsRepo.methodName.POST);
-        Response response = execute(request, "/auth/getJWTToken");
+        Response response = execute(request, URI.getJwtToken, URI.baseURL);
         getJWTResponse = stringToJavaObject(response.asString(), GetJWTResponse.class);
         return getJWTResponse;
     }
 
-    public GetJWTResponse getJWTResponse() {
+    public GetJWTResponse getResponse() {
         return getJWTResponse;
     }
 
-    public GetJWTRequest getJwtRequest() {
+    public GetJWTRequest getRequest() {
         return getJwtTokenRequest;
     }
 }

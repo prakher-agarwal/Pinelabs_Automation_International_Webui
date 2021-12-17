@@ -9,10 +9,10 @@ import java.util.Properties;
 public class DeviceHomePage extends BaseUtilsUI {
     static DeviceHomePage deviceHomePage;
     Properties locatorProp, deviceProp;
-    Map<String, String> values;
+    static Properties deviceHome;
 
     private DeviceHomePage() {
-
+        deviceHome = CommonUtils.readPropertyfile("LocatorsRepo", "DeviceHome.properties");
         locatorProp = CommonUtils.readPropertyfile("LocatorsRepo", "DeviceHome.properties");
         deviceProp = CommonUtils.readPropertyfile("CommonProperties", "Device.properties");
 
@@ -29,17 +29,17 @@ public class DeviceHomePage extends BaseUtilsUI {
         do {
             navigateBack();
             System.out.println("Navigating back to Iris");
-        } while (!isElementPresent(locatorProp.getProperty("IrisApp"),"checked"));
+        } while (!isElementPresent(locatorProp.getProperty("IrisApp"), "checked"));
         clickOnElement(locatorProp.getProperty("IrisApp"));
     }
 
     public void openPaymentsApp() {
-        setUpConnection();
-        do {
-            navigateBack();
-            System.out.println("Navigating back to Payments");
-        } while (!isElementPresent(locatorProp.getProperty("PaymentsApp"),"checked"));
-        clickOnElement(locatorProp.getProperty("PaymentsApp"));
-        System.out.println("Payment app is open");
-    }
+//        if (isElementDisplayed(deviceHome.getProperty("imageView"))) {
+//            clickOnElement(deviceHome.getProperty("imageView"));
+//            clickOnElement(deviceHome.getProperty("homeAppPayments"));
+//        } else if (isElementDisplayed(locatorProp.getProperty("PaymentsApp"))) {
+            clickOnElement(locatorProp.getProperty("PaymentsApp"));
+            System.out.println("Payment app is open");
+        }
+   // }
 }

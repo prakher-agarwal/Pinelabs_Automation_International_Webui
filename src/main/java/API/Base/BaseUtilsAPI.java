@@ -3,8 +3,10 @@ package API.Base;
 
 import Base.CommonUtils;
 import Constants.EnumsRepo;
+import Constants.URI;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,22 +48,19 @@ public class BaseUtilsAPI {
         ObjectMapper objectMapper = tlObjectMapper.get();
         if (objectMapper == null) {
             objectMapper = new ObjectMapper();
-
-            objectMapper.setVisibilityChecker(
-                    objectMapper.getVisibilityChecker().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
-//            objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+//            objectMapper.setVisibilityChecker(
+//                    objectMapper.getVisibilityChecker().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
 //            objectMapper.configure(JsonParser.Feature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
             tlObjectMapper.set(objectMapper);
         }
         return objectMapper;
     }
 
-    public String setURI(String endPoint) {
-        return CommonUtils.readPropertyfile("CommonProperties", "API.properties").
-                getProperty("BaseURI") + endPoint;
+    public String setURI(String baseURI, String endPoint) {
+        return baseURI + endPoint;
     }
 
     private RequestSpecBuilder getRequestBuilderInstance() {
@@ -76,13 +75,14 @@ public class BaseUtilsAPI {
         return encoderConfig;
     }
 
-    public Response execute(String request, String endPoint) {
+    public Response execute(String request, String endPoint, String baseURI) {
         Response response;
-        String uri = setURI(endPoint);
+        String uri = setURI(baseURI, endPoint);
         requestSpecBuilder = getRequestBuilderInstance();
         encoderConfig = getEncoderConfigInstance();
         requestSpecBuilder.setBody(request);
-        requestSpecBuilder.setBaseUri("http://localhost:8092/authorize");
+
+        requestSpecBuilder.setBaseUri(uri);
         requestSpecBuilder.setContentType(ContentType.JSON);
         RequestSpecification specification = requestSpecBuilder.addFilter(new RequestLoggingFilter()).
                 addFilter(new ResponseLoggingFilter()).build();
@@ -111,9 +111,9 @@ public class BaseUtilsAPI {
 
     }
 
-    public Response execute(String request, String endPoint, String authTokenForHeader) {
+    public Response execute(String request, String endPoint, String baseURI, String authTokenForHeader) {
         Response response;
-        String uri = setURI(endPoint);
+        String uri = setURI(baseURI, endPoint);
         requestSpecBuilder = getRequestBuilderInstance();
         encoderConfig = getEncoderConfigInstance();
         requestSpecBuilder.setBody(request);
@@ -160,10 +160,9 @@ public class BaseUtilsAPI {
 
     public <T> String javaObjectToString(T t) {
         String jsonString = null;
-        int count = 0;
         try {
             jsonString = getObjectMapper().writeValueAsString(t);
-            System.out.println(count++);
+            System.out.println(jsonString);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

@@ -42,7 +42,7 @@ public class IrisAppTest extends TestUtils {
     }
     @Test(priority = 2)
     public void validateRadioButtons(){
-        irisSettingsPage.selectCommModeRadioButton("BPCL");
+        irisSettingsPage.selectCommModeRadioButton("BLE");
         irisSettingsPage.selectPrintWidthRadioButton("24");
         irisSettingsPage.validateDefaultCommModeSelection();
         Assert.assertEquals(irisSettingsPage.validateDefaultCommModeSelection(),"BPCL");
