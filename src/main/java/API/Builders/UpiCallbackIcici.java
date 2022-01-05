@@ -31,7 +31,7 @@ public class UpiCallbackIcici extends BaseUtilsAPI {
     public UpiCallbackIciciResponse createAndExecute() {
         request = javaObjectToString(upiCallbackIciciRequest);
         setMethod(EnumsRepo.methodName.POST);
-        Response response = execute(request, URI.upiCallback, URI.directSimulatorBaseYRL);
+        Response response = execute(request, URI.upiCallback, URI.simulatorBaseURL);
         upiCallbackIciciResponse = stringToJavaObject(response.asString(), UpiCallbackIciciResponse.class);
         return upiCallbackIciciResponse;
     }

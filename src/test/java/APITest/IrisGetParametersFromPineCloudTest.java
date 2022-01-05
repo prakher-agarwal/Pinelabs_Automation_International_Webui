@@ -31,7 +31,7 @@ public class IrisGetParametersFromPineCloudTest extends TestUtilAPI {
         irisGetParametersFromPineCloud = getIrisGetParametersFromPineCloud(IrisGetParametersFromPineCloud.defaultRequest);
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0820771204",  GetJWTToken.defaultrequest);
         irisGetParametersFromPineCloud.getRequestPojo().setHardwareid("0820771204");
-        irisGetParametersFromPineCloud.createAndExecute(getJWTResponse.getAccessToken());
+        irisGetParametersFromPineCloud.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getBpclCloudUrl(), "https://bpcluatwap01.azurewebsites.net");
         Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getPineCloudUrl(), "https://14.141.92.54:8202");
         Assert.assertEquals(TestUtilAPI.getIrisGetParametersFromPineCloud.getResponsePojo().getAlpCloudUrl(), "http://122.160.150.44:9090");

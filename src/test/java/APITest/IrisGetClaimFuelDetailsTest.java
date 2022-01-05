@@ -14,11 +14,11 @@ public class IrisGetClaimFuelDetailsTest {
     public void getClaimFuel_TC001() {
         IrisGetClaimFuelDetails irisGetClaimFuelDetails = IrisGetClaimFuelDetails.getInstance(IrisGetClaimFuelDetails.defaultRequest);
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0820686904", GetJWTToken.defaultrequest);
-        IrisUploadBookFuelDetailsResponse irisUploadBookFuelDetailsResponse = IrisAPIHelpers.uploadBookFuelDetails("0820686904", getJWTResponse.getAccessToken());
+        IrisUploadBookFuelDetailsResponse irisUploadBookFuelDetailsResponse = IrisAPIHelpers.uploadBookFuelDetails("0820686904", getJWTResponse.getAccessToken().toString());
         irisGetClaimFuelDetails.getRequestPojo().setHardwareId("0820686904");
         irisGetClaimFuelDetails.getRequestPojo().setROid(180664);
         irisGetClaimFuelDetails.getRequestPojo().setQrStr(irisUploadBookFuelDetailsResponse.getQrStr());
-        irisGetClaimFuelDetails.createAndExecute(getJWTResponse.getAccessToken());
+        irisGetClaimFuelDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisGetClaimFuelDetails.getResponsePojo().getResMsg(), "Claimed Successfully");
 
     }

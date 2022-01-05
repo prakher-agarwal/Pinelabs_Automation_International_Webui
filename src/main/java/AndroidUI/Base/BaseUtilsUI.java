@@ -1,12 +1,14 @@
 package AndroidUI.Base;
 
 import Base.CommonUtils;
+
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -14,11 +16,13 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -26,7 +30,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 public class BaseUtilsUI {
@@ -61,8 +67,8 @@ public class BaseUtilsUI {
         }
         driver = new AndroidDriver<MobileElement>(url, caps);
         wait = new WebDriverWait(driver, 30);
-
     }
+
 
     public MobileElement getElement(String locator) {
         MobileElement element = null;
@@ -145,7 +151,6 @@ public class BaseUtilsUI {
     }
 
     public String getElementText(String locator) {
-
         return getElement(locator).getText();
     }
 
@@ -165,10 +170,8 @@ public class BaseUtilsUI {
 
         int start_x = (int) (dimension.getWidth() * 0.5);
         int start_y = (int) (dimension.getHeight() * 0.5);
-
         int end_x = (int) (dimension.getWidth() * 0.2);
         int end_y = (int) (dimension.getHeight() * 0.2);
-
         TouchAction action = new TouchAction(driver);
         action.press(PointOption.point(start_x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
                 .moveTo(PointOption.point(end_x, end_y)).release().perform();
@@ -263,7 +266,6 @@ public class BaseUtilsUI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.println("content = " + content);
         return content;
     }
@@ -289,5 +291,25 @@ public class BaseUtilsUI {
         }
 
      driver.terminateApp("payments");
+    }
+
+    public static String getScreenshot(ITestResult result) {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-h-m-s");
+
+        System.out.println("Date is " + dateFormat.format(date));
+        String methodName = result.getMethod().getMethodName() + "_";
+        String name = "FailedMethod" + methodName + dateFormat.format(date) + ".png";
+        System.out.println("Name of the string is " + name);
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        File src = screenshot.getScreenshotAs(OutputType.FILE);
+        String path = "C:\\Users\\vanshika.chauhan\\IdeaProjects\\Alp_Automation_Testing\\Reports" + result.getName();
+        File dest = new File(path);
+        try {
+            FileUtils.copyFile(src, dest);
+        } catch (IOException e) {
+            System.out.println("Could not capture screenshot" + e.getMessage());
+        }
+        return path;
     }
 }

@@ -81,9 +81,9 @@ public class CommonHelperPage extends BaseUtilsUI {
     }
 
     public void getAnyTransaction(int rocID, int batchNumber) {
-        selectGetStatus();
+       // selectGetStatus();
         clickOnElement(commonLocatorsProperties.getProperty("anyTransaction"));
-        enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        //enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
         enterBatchID(batchNumber);
         enterROCID(rocID);
 //        if (isElementDisplayed(paymentsReceipt.getProperty("invalidIsoPacketError"))) {
@@ -188,5 +188,13 @@ public class CommonHelperPage extends BaseUtilsUI {
         values.put(array[0], array1[0]);
         values.put(array1[1], array[2]);
         return values;
+    }
+
+    public void validateInvalidTxnInputError(){
+        if (isElementDisplayed(commonLocatorsProperties.getProperty("invalidTxnInput"))){
+            clickOnElement(commonLocatorsProperties.getProperty("dismissError"));
+           // throw new Exception("Invalid Txn Input Error Message Displayed. Please Check!");
+
+        }
     }
 }

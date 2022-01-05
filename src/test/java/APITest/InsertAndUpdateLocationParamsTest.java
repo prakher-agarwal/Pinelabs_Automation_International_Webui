@@ -13,7 +13,7 @@ public class InsertAndUpdateLocationParamsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Successfully inserted locations params in DB");
 
     }
@@ -24,7 +24,7 @@ public class InsertAndUpdateLocationParamsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Hardware location details already saved");
 
     }
@@ -34,7 +34,7 @@ public class InsertAndUpdateLocationParamsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Client is blocked from PCUI end");
 
     }
@@ -44,7 +44,7 @@ public class InsertAndUpdateLocationParamsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid(null);
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Client is blocked from PCUI end");
 
     }
@@ -55,7 +55,7 @@ public class InsertAndUpdateLocationParamsTest {
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
         insertAndUpdateLocationParams.getRequestPojo().setLatitude("");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Invalid Parameter request");
 
     }
@@ -66,7 +66,7 @@ public class InsertAndUpdateLocationParamsTest {
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
         insertAndUpdateLocationParams.getRequestPojo().setLongitude("");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Invalid Parameter request");
 
     }
@@ -78,7 +78,7 @@ public class InsertAndUpdateLocationParamsTest {
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
         insertAndUpdateLocationParams.getRequestPojo().setLatitude(null);
         insertAndUpdateLocationParams.getRequestPojo().setLongitude(null);
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Invalid Parameter request");
 
     }
@@ -89,7 +89,7 @@ public class InsertAndUpdateLocationParamsTest {
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
         insertAndUpdateLocationParams.getRequestPojo().setLatitude("abcd");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Invalid Parameter request");
 
     }
@@ -100,7 +100,7 @@ public class InsertAndUpdateLocationParamsTest {
         InsertAndUpdateLocationParams insertAndUpdateLocationParams = InsertAndUpdateLocationParams.getInstance(InsertAndUpdateLocationParams.defaultRequest);
         insertAndUpdateLocationParams.getRequestPojo().setHardwareid("0822398347");
         insertAndUpdateLocationParams.getRequestPojo().setLongitude("bshsk2");
-        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken());
+        insertAndUpdateLocationParams.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(insertAndUpdateLocationParams.getResponsePojo().getResMsg(), "Invalid Parameter request");
 
     }

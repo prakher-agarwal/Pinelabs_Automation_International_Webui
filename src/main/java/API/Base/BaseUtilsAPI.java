@@ -1,12 +1,7 @@
 package API.Base;
 
 
-import Base.CommonUtils;
 import Constants.EnumsRepo;
-import Constants.URI;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -81,7 +76,7 @@ public class BaseUtilsAPI {
         requestSpecBuilder = getRequestBuilderInstance();
         encoderConfig = getEncoderConfigInstance();
         requestSpecBuilder.setBody(request);
-
+        requestSpecBuilder.addHeader("merchantId", "A2GI92ROAM509H");
         requestSpecBuilder.setBaseUri(uri);
         requestSpecBuilder.setContentType(ContentType.JSON);
         RequestSpecification specification = requestSpecBuilder.addFilter(new RequestLoggingFilter()).

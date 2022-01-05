@@ -15,8 +15,7 @@ public class GetJWTResponse {
     @JsonProperty("ResMsg")
     private String resMsg;
     @JsonProperty("AccessToken")
-    private String accessToken;
-
+    private Object accessToken;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 

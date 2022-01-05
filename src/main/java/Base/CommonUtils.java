@@ -3,9 +3,13 @@ package Base;
 import Constants.Paths;
 import com.mongodb.client.*;
 import org.bson.Document;
+import org.openqa.selenium.TakesScreenshot;
+
 import static com.mongodb.client.model.Sorts.ascending;
 import java.io.File;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -76,5 +80,6 @@ public class CommonUtils {
         return random.nextInt(max - min) + min;
 
     }
+
 
 }

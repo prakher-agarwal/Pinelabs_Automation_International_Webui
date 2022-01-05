@@ -14,7 +14,7 @@ public class IrisUploadTransactionDetailsTest {
         IrisUploadTransactionDetails irisUploadTransactionDetails = IrisUploadTransactionDetails.getInstance(IrisUploadTransactionDetails.defaultRequest);
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         irisUploadTransactionDetails.getRequest().setHardwareId("0822398347");
-        irisUploadTransactionDetails.createAndExecute(getJWTResponse.getAccessToken());
+        irisUploadTransactionDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisUploadTransactionDetails.getResponse().getResMsg(), "Successful! Iris Transaction recorded in Db");
     }
 }

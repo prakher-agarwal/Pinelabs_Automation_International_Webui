@@ -13,7 +13,7 @@ public class IrisUploadProductPriceDetailsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         IrisUploadProductPriceDetails irisUploadProductPriceDetails = IrisUploadProductPriceDetails.getInstance(IrisUploadProductPriceDetails.defaultRequest);
         irisUploadProductPriceDetails.getRequest().setHardwareId("0822398347");
-        irisUploadProductPriceDetails.createAndExecute(getJWTResponse.getAccessToken());
+        irisUploadProductPriceDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisUploadProductPriceDetails.getResponse().getResMsg(), "Successfully uploaded the product price details in DB");
     }
 }

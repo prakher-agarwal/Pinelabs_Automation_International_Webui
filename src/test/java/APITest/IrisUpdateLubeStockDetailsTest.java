@@ -18,7 +18,7 @@ public class IrisUpdateLubeStockDetailsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0821397407", GetJWTToken.defaultrequest);
         irisUpdateLubeStockDetails.getRequest().setHardwareId("0821397407");
         irisUpdateLubeStockDetails.getRequest().setQuantity(89763);
-        irisUpdateLubeStockDetails.createAndExecute(getJWTResponse.getAccessToken());
+        irisUpdateLubeStockDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisUpdateLubeStockDetails.getResponse().getResMsg(), "Successfully updated the dry stock details in DB");
        // FindIterable<Document> a = CommonUtils.sortWithcolumnName("PL_IRIS_DRY_STOCK_SALE_COLLECTIONS", "LUBE_SALE_DATE_TIME");
     Document d=    CommonUtils.findRowBasedOnColumn("PL_IRIS_DRY_STOCK_UPDATE_COLLECTIONS", "QUANTITY",89763);

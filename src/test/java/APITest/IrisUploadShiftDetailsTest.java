@@ -14,7 +14,7 @@ public class IrisUploadShiftDetailsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0822398347", GetJWTToken.defaultrequest);
         IrisUploadShiftDetails irisUploadShiftDetails= IrisUploadShiftDetails.getInstance(IrisUploadShiftDetails.defaultRequest);
         irisUploadShiftDetails.getRequest().setHardwareId("0822398347");
-        irisUploadShiftDetails.createAndExecute(getJWTResponse.getAccessToken());
+        irisUploadShiftDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisUploadShiftDetails.getResponse().getResMsg(),"Successfully Uploaded the shift change details in DB");
     }
 }

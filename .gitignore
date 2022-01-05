@@ -1,7 +1,10 @@
 # Default ignored files
 /shelf/
-/.idea/workspace.xml
+/.idea/
 /src/test/java/APITest/dummy.java
-src/test/java/TestBase/SslUtil.java
-src/test/java/TestBase/SslUtilDev.java
+/src/test/java/TestBase/SslUtil.java
+/src/test/java/TestBase/SslUtilDev.java
 /target/
+/CodeCoverage/
+ /Reports/
+  /out/

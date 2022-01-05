@@ -14,7 +14,7 @@ public class IrisBookClaimFuelStatusTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0821396591", GetJWTToken.defaultrequest);
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Transaction Updated Successfully");
     }
 
@@ -24,7 +24,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setROid("180664");
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Transaction Not Found");
     }
     @Test(description = "Validate if bookClaimFuelStatus if roid is not provided")
@@ -33,7 +33,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setROid("180664");
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Transaction Not Found");
     }
     @Test(description = "Validate if bookClaimFuelStatus if roid parameter is not provided")
@@ -42,7 +42,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setROid(null);
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Ro Id");
     }
     @Test(description = "Validate if bookClaimFuelStatus if randoum ROid is provided")
@@ -51,7 +51,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setROid("23467");
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Ro Id");
     }
     @Test(description = "Validate if bookClaimFuelStatus if TranId is empty")
@@ -60,7 +60,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setTranId("");
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Transaction Id");
     }
     @Test(description = "Validate if bookClaimFuelStatus if TranId parameter is not sent")
@@ -69,7 +69,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setTranId(null);
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Transaction Id");
     }
     @Test(description = "Validate if bookClaimFuelStatus if TranId parameter is not sent")
@@ -78,7 +78,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setTranId(null);
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Transaction Id");
     }
     @Test(description = "Validate if bookClaimFuelStatus if RedeemAmt parameter is not sent")
@@ -87,7 +87,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setRedeemAmt(null);
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Transction Id");
     }
 //    @Test(description = "Validate if bookClaimFuelStatus if RedeemAmt parameter is set empty")
@@ -97,7 +97,7 @@ public class IrisBookClaimFuelStatusTest {
 //        irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
 //        Integer a=null;
 //        irisBookClaimFuelStatus.getRequestPojo().setRedeemAmt();
-//        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+//        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
 //        Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Invalid Transction Id");
 //    }
     @Test(description = "Validate if bookClaimFuelStatus if RedeemAmt parameter is set invalid")
@@ -106,7 +106,7 @@ public class IrisBookClaimFuelStatusTest {
         IrisBookClaimFuelStatus irisBookClaimFuelStatus = IrisBookClaimFuelStatus.getInstance(IrisBookClaimFuelStatus.defaultRequest);
         irisBookClaimFuelStatus.getRequestPojo().setHardwareId("0821396591");
         irisBookClaimFuelStatus.getRequestPojo().setRedeemAmt(-987);
-        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken());
+        irisBookClaimFuelStatus.createAndExecute(getJWTResponse.getAccessToken().toString().toString());
         Assert.assertEquals(irisBookClaimFuelStatus.getResponsePojo().getResMsg(), "Transaction Updated Successfully");
     }
 

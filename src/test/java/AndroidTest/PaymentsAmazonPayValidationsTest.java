@@ -1,7 +1,6 @@
 package AndroidTest;
 
 import API.Builders.UpiAmazonPay;
-import API.Builders.UpiCallbackIcici;
 import AndroidUI.Base.BaseUtilsUI;
 import AndroidUI.POM.DeviceHomePage;
 import AndroidUI.POM.PaymentsApp.CommonHelperPage;
@@ -18,11 +17,11 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
     UpiAmazonPay upiAmazonPayInstance;
     CommonHelperPage commonHelperPageInstance;
     PaymentsUPIValidationsPage paymentsUPIValidationInstance;
+    String qrValues;
 
     @BeforeClass
     public void getInstances() {
         BaseUtilsUI.setUpConnection();
-        //paymentsUPIValidationInstance = getPaymentsAmazonPayValidationsPage();
         paymentsAmazonPayInstance = getPaymentsAmazonPayValidationsPage();
         deviceHomePageInstance = getDeviceHomePageInstance();
         commonHelperPageInstance = getCommonHelperPageInstance();
@@ -30,27 +29,29 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         upiAmazonPayInstance = UpiAmazonPay.getInstance(UpiAmazonPay.defaultrequest);
     }
 
-    @Test(description = "Validate if the transaction is done successfully using amazonPay paymode")
+    @Test(description = "Verify the ICICI UPI Transaction sync mode.")
     public void paymentsAmazonPay_TC001() {
         deviceHomePageInstance.openPaymentsApp();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
-        //paymentsUPIValidationInstance.selectUPISaleRequest();
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         paymentsAmazonPayInstance.selectAmazonPaySale();
         commonHelperPageInstance.enterAmount(1);
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(6));
-//      commonHelperPageInstance.selectUPIpaymode("Amazon Pay");
         commonHelperPageInstance.scanQR();
-        String sellerOrderID = commonHelperPageInstance.getValueFromQR("tr");
-        String merchantID = commonHelperPageInstance.getValueFromQR("mi");
+        qrValues = commonHelperPageInstance.getValueFromQR("tr");
+        upiAmazonPayInstance.getRequest().setSellerOrderId(qrValues);
+        //System.out.println("Order ID is " + sellerOrderID);
+        qrValues = commonHelperPageInstance.getValueFromQR("mi");
+        upiAmazonPayInstance.getRequest().setMerchantID(qrValues);
+        // System.out.println("Merchant ID is " + merchantID);
         String totalAmt = commonHelperPageInstance.getValueFromQR("am");
-        upiAmazonPayInstance.getRequest().setMerchantID(merchantID);
-        upiAmazonPayInstance.getRequest().setOrderTotalAmount(totalAmt);
-        upiAmazonPayInstance.getRequest().setSellerOrderId(sellerOrderID);
+        upiAmazonPayInstance.getRequest().setOrderTotalAmount("1.0");
+        // System.out.println("total amount is " + totalAmt);
+//        upiAmazonPayInstance.getRequest().setMerchantID(merchantID);
+//        upiAmazonPayInstance.getRequest().setOrderTotalAmount("1.0");
+//        upiAmazonPayInstance.getRequest().setSellerOrderId(sellerOrderID);
         upiAmazonPayInstance.createAndExecute();
-
+        commonHelperPageInstance.clickProceedOnReceipt();
     }
 
     @Test(description = "Validate the status of Last amazonPay transaction")
@@ -58,7 +59,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         commonHelperPageInstance.getLastTransaction();
     }
 
@@ -67,7 +68,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay ");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay ");
         commonHelperPageInstance.getAnyTransaction(233, 9006);
 
     }
@@ -77,7 +78,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         commonHelperPageInstance.selectReprint();
         commonHelperPageInstance.getLastTransaction();
 
@@ -88,9 +89,9 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         commonHelperPageInstance.selectReprint();
-        commonHelperPageInstance.getAnyTransaction(233, 9006);
+        commonHelperPageInstance.getAnyTransaction(120, 9009);
     }
 
     @Test(description = "Validate the amazonPay reorts of current batch summary")
@@ -98,7 +99,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         paymentsAmazonPayInstance.selectUPIReports();
         paymentsAmazonPayInstance.getCurrBatchSummary();
         commonHelperPageInstance.getLastTransaction();
@@ -110,7 +111,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         paymentsAmazonPayInstance.selectUPIReports();
         paymentsAmazonPayInstance.getLastBatchSummary();
         commonHelperPageInstance.getAnyTransaction(233, 9006);
@@ -121,10 +122,52 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
-        paymentsAmazonPayInstance.selecthPaymentMode("Amazon Pay");
+        paymentsAmazonPayInstance.selectPaymentMode("Amazon Pay");
         paymentsAmazonPayInstance.selectUPIReports();
         paymentsAmazonPayInstance.getBatchDetailReport();
         commonHelperPageInstance.getAnyTransaction(233, 9006);
+    }
+
+    @Test(description = "Validate the reprint receipt of last void amazonPay transaction  ")
+    public void paymentsAmazonPay_TC009() {
+        deviceHomePageInstance.openPaymentsApp();
+        commonHelperPageInstance.clickOnFingerIcon();
+        commonHelperPageInstance.clickBrowseOtherOptions();
+        paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
+        paymentsUPIValidationInstance.selectVoid();
+        commonHelperPageInstance.enterBatchID(9009);
+        commonHelperPageInstance.enterROCID(123);
+        commonHelperPageInstance.enterAmount(1);
+        commonHelperPageInstance.clickProceedOnReceipt();
+        commonHelperPageInstance.openPaytmFromHome();
+        commonHelperPageInstance.clickOnFingerIcon();
+        commonHelperPageInstance.clickBrowseOtherOptions();
+        paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
+        commonHelperPageInstance.selectReprint();
+        commonHelperPageInstance.getLastTransaction();
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.clickProceedOnReceipt();
+    }
+
+    @Test(description = "Validate the reprint receipt of last void amazonPay transaction  ")
+    public void paymentsAmazonPay_TC010() {
+        deviceHomePageInstance.openPaymentsApp();
+        commonHelperPageInstance.clickOnFingerIcon();
+        commonHelperPageInstance.clickBrowseOtherOptions();
+        paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
+        paymentsUPIValidationInstance.selectVoid();
+        commonHelperPageInstance.enterBatchID(9009);
+        commonHelperPageInstance.enterROCID(123);
+        commonHelperPageInstance.enterAmount(1);
+        commonHelperPageInstance.clickProceedOnReceipt();
+        commonHelperPageInstance.openPaytmFromHome();
+        commonHelperPageInstance.clickOnFingerIcon();
+        commonHelperPageInstance.clickBrowseOtherOptions();
+        paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
+        commonHelperPageInstance.selectReprint();
+        commonHelperPageInstance.getLastTransaction();
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.clickProceedOnReceipt();
     }
 
 

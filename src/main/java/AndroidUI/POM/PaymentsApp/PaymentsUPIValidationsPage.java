@@ -37,7 +37,6 @@ public class PaymentsUPIValidationsPage extends BaseUtilsUI {
         clickOnElement(commonLocatorsProperties.getProperty("searchButton"));
         setElementText(commonLocatorsProperties.getProperty("payModeText"), payMode);
         clickOnElement(commonLocatorsProperties.getProperty("payModeDropDown"));
-
         System.out.println("Searching for paymode:" + payMode);
     }
 

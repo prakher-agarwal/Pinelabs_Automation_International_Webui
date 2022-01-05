@@ -16,7 +16,7 @@ public class IrisUploadBookFuelDetailsTest {
         GetJWTResponse getJWTResponse = IrisAPIHelpers.getTokenFromGetJWTToken("0820686904",  GetJWTToken.defaultrequest);
         irisUploadBookFuelDetails.getRequestPojo().setHardwareId("0820686904");
         irisUploadBookFuelDetails.getRequestPojo().setRoid(180664);
-        irisUploadBookFuelDetails.createAndExecute(getJWTResponse.getAccessToken());
+        irisUploadBookFuelDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisUploadBookFuelDetails.getResponsePojo().getResMsg(),"Transaction Successfully Booked");
 
     }
