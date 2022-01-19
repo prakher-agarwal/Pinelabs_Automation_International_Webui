@@ -1,7 +1,8 @@
 package AndroidUI.POM.IrisApp;
 
 import AndroidUI.Base.BaseUtilsUI;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import Constants.Paths;
 import org.openqa.selenium.NotFoundException;
 
 import java.util.*;
@@ -13,8 +14,8 @@ public class IrisSettingsPage extends BaseUtilsUI {
 
     private IrisSettingsPage() {
 
-        locatorProp = CommonUtils.readPropertyfile("LocatorsRepo", "IrisSettings.properties");
-        deviceProp = CommonUtils.readPropertyfile("CommonProperties", "Device.properties");
+        locatorProp = CommonUtils.readPropertyfile(Paths.irisSettingsPropertiesPath);
+        deviceProp = CommonUtils.readPropertyfile(Paths.devicePropertiesPath);
         values = new HashMap<>();
     }
 

@@ -18,23 +18,27 @@
         </profiles>
     <build>
     <plugins>
-        <plugin>
+      <!--   <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.19.1</version>
-        </plugin>
+        </plugin> -->
+<!--        <plugin>-->
+<!--            <artifactId>maven-assembly-plugin</artifactId>-->
+<!--            <configuration>-->
+<!--                <archive>-->
+<!--                    <manifest>-->
+<!--                        <mainClass>fully.qualified.MainClass</mainClass>-->
+<!--                    </manifest>-->
+<!--                </archive>-->
+<!--                <descriptorRefs>-->
+<!--                    <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                </descriptorRefs>-->
+<!--            </configuration>-->
+<!--        </plugin>-->
         <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-                <archive>
-                    <manifest>
-                        <mainClass>fully.qualified.MainClass</mainClass>
-                    </manifest>
-                </archive>
-                <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                </descriptorRefs>
-            </configuration>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
         <plugin>
             <!-- Build an executable JAR -->
@@ -42,10 +46,12 @@
             <artifactId>maven-jar-plugin</artifactId>
             <version>3.1.0</version>
             <configuration>
+
                 <archive>
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <classpathPrefix>lib/</classpathPrefix>
+<!--                        <argLine>> -Djava.library.path="C:\Program Files (x86)\Microsoft JDBC Driver 6.0 for SQL Server\sqljdbc_6.0\enu\auth\x64\sqljdbc_auth.dll"</argLine>-->
 <!--                        <mainClass>com.mypackage.MyClass</mainClass>-->
                     </manifest>
                 </archive>
@@ -55,9 +61,9 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
-                <forkCount>3</forkCount>
-                <reuseForks>true</reuseForks>
-                <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+<!--                <forkCount>3</forkCount>-->
+<!--                <reuseForks>true</reuseForks>-->
+              <!--   <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine> -->
             </configuration>
         </plugin>
     <plugin>
@@ -131,17 +137,8 @@
         <groovy.version>3.0.2</groovy.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.11.2</version>
-        </dependency>
+ 
+    
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -169,11 +166,7 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
+   
 
 
         <!-- https://mvnrepository.com/artifact/com.sun.xml.security/xml-security-impl -->
@@ -199,6 +192,9 @@
             <artifactId>extentreports</artifactId>
             <version>3.1.5</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
+
         <!-- Thanks for using https://jar-download.com -->
 
         <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
@@ -207,6 +203,16 @@
             <artifactId>cucumber-java</artifactId>
             <version>1.1.3</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.4.1.jre8</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -240,12 +246,13 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-            <scope>provided</scope>
-        </dependency>
+     
+        <!-- https://mvnrepository.com/artifact/com.evernote/android-intent -->
+       <!--  <dependency>
+            <groupId>com.evernote</groupId>
+            <artifactId>android-intent</artifactId>
+        </dependency> -->
+
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
@@ -279,7 +286,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
+            <version>1.18.22</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -302,15 +309,10 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>23.0.0</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8</version>
-            <scope>compile</scope>
-        </dependency>
+      
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

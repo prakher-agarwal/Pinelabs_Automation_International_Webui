@@ -1,7 +1,9 @@
 package AndroidUI.POM.PaymentsApp;
 
 import AndroidUI.Base.BaseUtilsUI;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import Constants.Paths;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -16,9 +18,9 @@ public class PaymentsUPIValidationsPage extends BaseUtilsUI {
 
     private PaymentsUPIValidationsPage() {
 
-        deviceHome = CommonUtils.readPropertyfile("LocatorsRepo", "DeviceHome.properties");
-        commonLocatorsProperties = CommonUtils.readPropertyfile("LocatorsRepo", "CommonLocators.properties");
-        paymentsUPIProperties = CommonUtils.readPropertyfile("LocatorsRepo", "Payments_UPIPay.properties");
+        deviceHome = CommonUtils.readPropertyfile(Paths.devicePropertiesPath);
+        commonLocatorsProperties = CommonUtils.readPropertyfile(Paths.commonLocPropertiesPath);
+        paymentsUPIProperties = CommonUtils.readPropertyfile(Paths.upiPayPropertiesPath);
     }
 
     public static PaymentsUPIValidationsPage getInstance() {

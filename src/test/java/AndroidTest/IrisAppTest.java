@@ -1,6 +1,6 @@
 package AndroidTest;
 
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
 import AndroidUI.POM.DeviceHomePage;
 import AndroidUI.POM.IrisApp.IrisHomePage;
 import AndroidUI.POM.IrisApp.IrisSettingsPage;

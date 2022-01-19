@@ -1,6 +1,6 @@
-//package api.jsonProcessor;
+package APITest;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
+//import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;

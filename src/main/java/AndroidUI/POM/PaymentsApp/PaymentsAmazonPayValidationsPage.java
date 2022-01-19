@@ -1,7 +1,8 @@
 package AndroidUI.POM.PaymentsApp;
 
 import AndroidUI.Base.BaseUtilsUI;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import Constants.Paths;
 
 import java.util.Properties;
 
@@ -13,8 +14,8 @@ public class PaymentsAmazonPayValidationsPage extends BaseUtilsUI {
 
     private PaymentsAmazonPayValidationsPage() {
 
-        commonLocatorsProperties = CommonUtils.readPropertyfile("LocatorsRepo", "CommonLocators.properties");
-        paymentsAmazonPayProperties = CommonUtils.readPropertyfile("LocatorsRepo", "Payments_AmazonPay.properties");
+        commonLocatorsProperties = CommonUtils.readPropertyfile(Paths.commonLocPropertiesPath);
+        paymentsAmazonPayProperties = CommonUtils.readPropertyfile(Paths.amazonPayPropertiesPath);
 
     }
 
@@ -25,6 +26,7 @@ public class PaymentsAmazonPayValidationsPage extends BaseUtilsUI {
     }
 
     public void selectAmazonPaySale() {
+
         clickOnElement(paymentsAmazonPayProperties.getProperty("amazonPaySale"));
     }
 
@@ -53,6 +55,5 @@ public class PaymentsAmazonPayValidationsPage extends BaseUtilsUI {
     public void getBatchDetailReport() {
         clickOnElement(paymentsAmazonPayProperties.getProperty("batchDetail"));
     }
-
 
 }

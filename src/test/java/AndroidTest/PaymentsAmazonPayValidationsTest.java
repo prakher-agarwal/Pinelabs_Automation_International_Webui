@@ -6,7 +6,7 @@ import AndroidUI.POM.DeviceHomePage;
 import AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
 import AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
 import TestBase.TestUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -29,7 +29,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         upiAmazonPayInstance = UpiAmazonPay.getInstance(UpiAmazonPay.defaultrequest);
     }
 
-    @Test(description = "Verify the ICICI UPI Transaction sync mode.")
+    @Test(description = "Verify the Amazon Pay Transaction sync mode.")
     public void paymentsAmazonPay_TC001() {
         deviceHomePageInstance.openPaymentsApp();
         commonHelperPageInstance.clickOnFingerIcon();
@@ -38,6 +38,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         paymentsAmazonPayInstance.selectAmazonPaySale();
         commonHelperPageInstance.enterAmount(1);
         commonHelperPageInstance.scanQR();
+        commonHelperPageInstance.clickProceedOnReceipt();
         qrValues = commonHelperPageInstance.getValueFromQR("tr");
         upiAmazonPayInstance.getRequest().setSellerOrderId(qrValues);
         //System.out.println("Order ID is " + sellerOrderID);

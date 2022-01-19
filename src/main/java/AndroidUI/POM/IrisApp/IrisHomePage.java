@@ -1,7 +1,8 @@
 package AndroidUI.POM.IrisApp;
 
 import AndroidUI.Base.BaseUtilsUI;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import Constants.Paths;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +15,8 @@ public class IrisHomePage extends BaseUtilsUI {
 
     private IrisHomePage() {
 
-        locatorProp = CommonUtils.readPropertyfile("LocatorsRepo", "IrisHome.properties");
-        deviceProp = CommonUtils.readPropertyfile("CommonProperties", "Device.properties");
+        locatorProp = CommonUtils.readPropertyfile(Paths.irisHomePropertiesPath);
+        deviceProp = CommonUtils.readPropertyfile(Paths.devicePropertiesPath);
         values = new HashMap<>();
     }
 

@@ -1,19 +1,13 @@
 package APITest;
 
 import API.Builders.GetJWTToken;
-import AndroidUI.Base.BaseUtilsUI;
-import Base.ExtentReport;
+import CommonBase.ExtentReport;
 import TestBase.TestUtils;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 public class GetJWTTest extends TestUtils {
     GetJWTToken getJWTToken;

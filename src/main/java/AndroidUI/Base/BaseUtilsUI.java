@@ -1,22 +1,23 @@
 package AndroidUI.Base;
 
-import Base.CommonUtils;
-
+import CommonBase.CommonUtils;
+import Constants.Paths;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -36,37 +37,98 @@ import java.util.Date;
 import java.util.List;
 
 public class BaseUtilsUI {
+    static String Appium_Node_Path = "C:\\Program Files (x86)\\Appium\\node.exe";
+    static String Appium_JS_Path = "C:\\Program Files (x86)\\Appium\\node_modules\\appium\\bin\\appium.js";
+    static AppiumDriverLocalService service;
+    static String service_url;
+    static AppiumServiceBuilder builder;
     private static DesiredCapabilities caps;
     static URL url;
     static AppiumDriver<MobileElement> driver;
     static WebDriverWait wait;
 
+    public void launch() {
+        AppiumDriver<MobileElement> driver = new AppiumDriver<MobileElement>(caps);
+        driver.findElementByXPath("").click();
+
+    }
+
+
     private static DesiredCapabilities setCapabilities() {
         caps = new DesiredCapabilities();
-        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("PLATFORM_NAME"));
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("PLATFORM_VERSION"));
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("DEVICE_NAME"));
-        caps.setCapability(MobileCapabilityType.UDID, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("UDID"));
-        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("NEW_COMMAND_TIMEOUT"));
-        caps.setCapability("–session-override", true);
-        caps.setCapability(MobileCapabilityType.APPLICATION_NAME,"Payments");
-        caps.setCapability("fullReset", false);
-        caps.setCapability("noReset", true);
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtils.readPropertyfile(Paths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, CommonUtils.readPropertyfile(Paths.devicePropertiesPath).getProperty("PLATFORM_VERSION"));
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, CommonUtils.readPropertyfile(Paths.devicePropertiesPath).getProperty("DEVICE_NAME"));
+        caps.setCapability(MobileCapabilityType.UDID, CommonUtils.readPropertyfile(Paths.devicePropertiesPath).getProperty("UDID"));
+        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, CommonUtils.readPropertyfile(Paths.devicePropertiesPath).getProperty("NEW_COMMAND_TIMEOUT"));
+        //  caps.setCapability("–session-override", true);
+        //caps.setCapability(MobileCapabilityType.APPLICATION_NAME, "Payments");
+        //  caps.setCapability("fullReset", false);
+        caps.setCapability("noReset", false);
+
         // caps.setCapability(“appActivity”,“com.android.settings.Settings”);
         return caps;
     }
 
+    public static AppiumServiceBuilder launchAppium() {
+        builder = new AppiumServiceBuilder();
+        builder.withCapabilities(caps);
+        builder.usingPort(4723);
+        builder.withIPAddress("0.0.0.0");
+        //  builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
+        builder.withArgument(GeneralServerFlag.LOG_LEVEL, "error");
+        builder.usingDriverExecutable(new File((Appium_Node_Path)));
+        builder.withAppiumJS(new File(Appium_JS_Path));
+        return builder;
+    }
+
+    public static String appiumStart() {
+        // builder = launchAppium();
+        service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder().
+                usingPort(2856).usingDriverExecutable(new File(Appium_Node_Path)).
+                withAppiumJS(new File(Appium_JS_Path)));
+        service = AppiumDriverLocalService.buildService(builder);
+        service.start();
+        try {
+            Thread.sleep(25000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+//        AppiumServiceBuilder appiumServiceBuilder = new AppiumServiceBuilder();
+//        appiumServiceBuilder.usingPort(4723)
+//                .withIPAddress("0.0.0.0").withCapabilities(caps)
+//                .withAppiumJS(new File(Appium_JS_Path))
+//                .usingDriverExecutable(new File(Appium_Node_Path))
+//                .withArgument(GeneralServerFlag.SESSION_OVERRIDE)
+//                .withArgument(AndroidServerFlag.BOOTSTRAP_PORT_NUMBER, "4824")
+//                .withArgument(GeneralServerFlag.LOG_LEVEL, "debug")
+//            //    .withArgument(GeneralServerFlag.CONFIGURATION_FILE, nodeConfigFilePath)
+//                .withLogFile(new File(System.getProperty("user.dir") + "/target/resources/appium_server_logs" + Thread.currentThread().getId()));
+//        AppiumDriverLocalService service = AppiumDriverLocalService.buildService(appiumServiceBuilder);
+//        service.start();
+        service_url = service.getUrl().toString();
+        System.out.println("Service URL is " + service_url);
+
+        return service_url;
+    }
+
+    public static void appiumStop() throws Exception {
+        service.stop();
+
+    }
+
     public static void setUpConnection() {
         caps = setCapabilities();
-
+        // service_url = appiumStart();
         try {
-            url = new URL(CommonUtils.readPropertyfile("CommonProperties", "Device.properties").getProperty("appiumServerURL"));
-            System.out.println("Connection with Mongodb is established");
+            url = new URL("http://localhost:4723/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         driver = new AndroidDriver<MobileElement>(url, caps);
         wait = new WebDriverWait(driver, 30);
+        System.out.println("Connection with Appium is established");
     }
 
 
@@ -87,7 +149,7 @@ public class BaseUtilsUI {
                 break;
             case "XPATH":
                 element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
-               break;
+                break;
             case "ACCESSIBILITYID":
 
             case "ANDROIDUIAUTOMATOR":
@@ -137,16 +199,15 @@ public class BaseUtilsUI {
     public void clickOnElement(String locator) {
 
         if (isElementDisplayed(locator)) {
-           getElement(locator).click();
-        }
-        else
+            getElement(locator).click();
+        } else
             throw new NoSuchElementException("Element not found . Please check locator!" + locator);
         //   System.out.println("Clicked on " + locator);
     }
 
-    public void clickUsingJS(String locator){
-       WebElement element= getElement(locator);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
+    public void clickUsingJS(String locator) {
+        WebElement element = getElement(locator);
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", "//*[@text='UPI']");
     }
 
@@ -176,6 +237,7 @@ public class BaseUtilsUI {
         action.press(PointOption.point(start_x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
                 .moveTo(PointOption.point(end_x, end_y)).release().perform();
     }
+
 
     public String getAttribute(String locator, String attributeName) {
 
@@ -212,7 +274,7 @@ public class BaseUtilsUI {
         return true;
     }
 
-        public boolean isElementSelected(String locator) {
+    public boolean isElementSelected(String locator) {
         if (getElement(locator).isSelected())
             return true;
         return false;
@@ -229,17 +291,7 @@ public class BaseUtilsUI {
         driver.navigate().back();
     } //9899293631
 
-    public File takeScreenshot(String filePath) {
-        TakesScreenshot scrShot = (TakesScreenshot) driver;
-        File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        File destFile = new File(filePath);
-        try {
-            FileUtils.copyFile(srcFile, destFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return destFile;
-    }
+
 
     private BufferedImage generateImage(MobileElement locator, File screenshot) throws IOException {
         BufferedImage fullImage = ImageIO.read(screenshot);
@@ -283,33 +335,36 @@ public class BaseUtilsUI {
         System.out.println("QR code text is : " + qrtext);
         return qrtext;
     }
-    public static void closeAppInstace(String appName){
+
+    public static void closeAppInstace(String appName) {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-     driver.terminateApp("payments");
+        driver.terminateApp("payments");
     }
 
     public static String getScreenshot(ITestResult result) {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-h-m-s");
-
         System.out.println("Date is " + dateFormat.format(date));
         String methodName = result.getMethod().getMethodName() + "_";
         String name = "FailedMethod" + methodName + dateFormat.format(date) + ".png";
         System.out.println("Name of the string is " + name);
-        TakesScreenshot screenshot = (TakesScreenshot) driver;
-        File src = screenshot.getScreenshotAs(OutputType.FILE);
-        String path = "C:\\Users\\vanshika.chauhan\\IdeaProjects\\Alp_Automation_Testing\\Reports" + result.getName();
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String path =Paths.extentReportScreenshot + result.getName()+".png";
         File dest = new File(path);
         try {
-            FileUtils.copyFile(src, dest);
+            FileUtils.copyFile(screenshotFile, dest);
         } catch (IOException e) {
             System.out.println("Could not capture screenshot" + e.getMessage());
         }
         return path;
+    }
+
+    public void tearDown() {
+        driver.quit();
     }
 }

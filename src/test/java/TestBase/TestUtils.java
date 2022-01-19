@@ -1,7 +1,5 @@
 package TestBase;
 
-import API.Builders.GetJWTToken;
-import API.Builders.IrisGetParametersFromPineCloud;
 import AndroidUI.Base.BaseUtilsUI;
 import AndroidUI.POM.DeviceHomePage;
 import AndroidUI.POM.IrisApp.IrisHomePage;
@@ -9,7 +7,8 @@ import AndroidUI.POM.IrisApp.IrisSettingsPage;
 import AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
 import AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeSuite;
 
 public class TestUtils {
@@ -24,12 +23,11 @@ public class TestUtils {
 
     @BeforeSuite
     public void getInstances() {
-        BaseUtilsUI.setUpConnection();
+       // BaseUtilsUI.setUpConnection();
 
         getIrisHomePageInstance = getIrisHomePageInstance();
         getIrisSettingsPage = getIrisSettingsPageInstance();
         getDeviceHomePageInstance = getDeviceHomePageInstance();
-
 
     }
 
@@ -64,9 +62,9 @@ public class TestUtils {
     }
 
 
-    // @AfterClass
+   // @AfterClass
     public void closeDbConnection() {
-        CommonUtils.closeConnection();
+        getCommonHelperPageInstance().closeDriver();
     }
 
 

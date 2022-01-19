@@ -1,7 +1,8 @@
 package AndroidUI.POM;
 
 import AndroidUI.Base.BaseUtilsUI;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import Constants.Paths;
 import org.testng.Assert;
 
 import java.util.Properties;
@@ -13,9 +14,9 @@ public class DeviceHomePage extends BaseUtilsUI {
     static Properties deviceHome;
 
     private DeviceHomePage() {
-        deviceHome = CommonUtils.readPropertyfile("LocatorsRepo", "DeviceHome.properties");
-        commonLocatorProp = CommonUtils.readPropertyfile("LocatorsRepo", "CommonLocators.properties");
-        deviceProp = CommonUtils.readPropertyfile("CommonProperties", "Device.properties");
+        deviceHome = CommonUtils.readPropertyfile(Paths.deviceHomePropertiesPath);
+        commonLocatorProp = CommonUtils.readPropertyfile(Paths.commonLocPropertiesPath);
+        deviceProp = CommonUtils.readPropertyfile(Paths.devicePropertiesPath);
 
     }
 
@@ -34,14 +35,14 @@ public class DeviceHomePage extends BaseUtilsUI {
         clickOnElement(deviceHome.getProperty("IrisApp"));
     }
 
-    private void paymentsFromHomeApp(){
+    private void paymentsFromHomeApp() {
         if (isElementDisplayed(deviceHome.getProperty("imageView"))) {
             clickOnElement(deviceHome.getProperty("imageView"));
             clickOnElement(deviceHome.getProperty("homeAppPayments"));
-        }
-        else if (isElementDisplayed(deviceHome.getProperty("homeAppPayments")))
+        } else if (isElementDisplayed(deviceHome.getProperty("homeAppPayments")))
             clickOnElement(deviceHome.getProperty("homeAppPayments"));
     }
+
     private void paymentsFromDeviceHome() {
         if (isElementDisplayed(deviceHome.getProperty("PaymentsApp"))) {
             clickOnElement(deviceHome.getProperty("PaymentsApp"));
@@ -51,27 +52,25 @@ public class DeviceHomePage extends BaseUtilsUI {
 
     public void openPaymentsApp() {
 
-
-
-
         if (isElementDisplayed(deviceHome.getProperty("imageView"))) {
             clickOnElement(deviceHome.getProperty("imageView"));
             clickOnElement(deviceHome.getProperty("homeAppPayments"));
-            checkTransactionPopUP();
-            clickOnElement(deviceHome.getProperty("homeAppPayments"));
+//            if (checkTransactionPopUP())
+//                clickOnElement(deviceHome.getProperty("homeAppPayments"));
         } else if (isElementDisplayed(deviceHome.getProperty("PaymentsApp"))) {
             clickOnElement(deviceHome.getProperty("PaymentsApp"));
             System.out.println("Payment app is open");
         }
+        else
+            clickOnElement(deviceHome.getProperty("homeAppPayments"));
     }
 
     private boolean checkTransactionPopUP() {
         if (isElementDisplayed(commonLocatorProp.getProperty("tansactionAreadyInProgress"))) {
             Assert.assertEquals(getElementText(commonLocatorProp.getProperty("proceedToActiveText")), "Do you want to go to the active transaction?");
-            clickOnElement(commonLocatorProp.getProperty("yesButton"));
+            clickOnElement(commonLocatorProp.getProperty("noButton"));
             return true;
-        }
-        else
+        } else
             return false;
 
 

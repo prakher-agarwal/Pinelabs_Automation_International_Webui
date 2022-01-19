@@ -1,8 +1,8 @@
 package AndroidUI.POM.PaymentsApp;
 
 import AndroidUI.Base.BaseUtilsUI;
-import Base.CommonUtils;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import CommonBase.CommonUtils;
+import Constants.Paths;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,9 +18,9 @@ public class CommonHelperPage extends BaseUtilsUI {
 
     private CommonHelperPage() {
 
-        deviceHome = CommonUtils.readPropertyfile("LocatorsRepo", "DeviceHome.properties");
-        commonLocatorsProperties = CommonUtils.readPropertyfile("LocatorsRepo", "CommonLocators.properties");
-        paymentsUPIProperties = CommonUtils.readPropertyfile("LocatorsRepo", "Payments_UPIPay.properties");
+        deviceHome = CommonUtils.readPropertyfile(Paths.devicePropertiesPath);
+        commonLocatorsProperties = CommonUtils.readPropertyfile(Paths.commonLocPropertiesPath);
+        paymentsUPIProperties = CommonUtils.readPropertyfile(Paths.upiPayPropertiesPath);
     }
     //13.234.97.42
 
@@ -57,17 +57,19 @@ public class CommonHelperPage extends BaseUtilsUI {
     }
 
     public void selectUPIpaymode(String paymode) {
-        if (paymode.equalsIgnoreCase("ICICI")) {
-            if (isElementDisplayed(paymentsUPIProperties.getProperty("iciciOption")))
-                clickOnElement(paymentsUPIProperties.getProperty("iciciOption"));
-            System.out.println("Selected ICICI Bank");
-        } else if (paymode.equalsIgnoreCase("Amazon Pay")) {
-            if (isElementDisplayed(paymentsUPIProperties.getProperty("amazonPayOption")))
-                clickOnElement(paymentsUPIProperties.getProperty("amazonPayOption"));
-            System.out.println("Selected AmazonPay Bank");
+        if (isElementDisplayed(paymentsUPIProperties.getProperty("paymodesOption"))) {
+
+            if (paymode.equalsIgnoreCase("ICICI")) {
+                if (isElementDisplayed(paymentsUPIProperties.getProperty("iciciOption")))
+                    clickOnElement(paymentsUPIProperties.getProperty("iciciOption"));
+                System.out.println("Selected ICICI Bank");
+            } else if (paymode.equalsIgnoreCase("Amazon Pay")) {
+                if (isElementDisplayed(paymentsUPIProperties.getProperty("amazonPayOption")))
+                    clickOnElement(paymentsUPIProperties.getProperty("amazonPayOption"));
+                System.out.println("Selected AmazonPay Bank");
+            }
         }
     }
-
 
     private void selectGetStatus() {
 
@@ -81,7 +83,7 @@ public class CommonHelperPage extends BaseUtilsUI {
     }
 
     public void getAnyTransaction(int rocID, int batchNumber) {
-       // selectGetStatus();
+        // selectGetStatus();
         clickOnElement(commonLocatorsProperties.getProperty("anyTransaction"));
         //enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
         enterBatchID(batchNumber);
@@ -128,12 +130,12 @@ public class CommonHelperPage extends BaseUtilsUI {
             System.out.println("Entered invoice number: " + invoiceNumber);
             clickOnElement(commonLocatorsProperties.getProperty("submitButton"));
             System.out.println("Submitted invoice number");
-        }
-        else
+        } else
             System.out.println("Invoice text box not displayed");
     }
 
     public String scanQR() {
+
         System.out.println("QR Code Displayed");
         return decodeQr(commonLocatorsProperties.getProperty("qRCode"));
     }
@@ -164,9 +166,31 @@ public class CommonHelperPage extends BaseUtilsUI {
         return value;
     }
 
-    public String validateClientAndMID(String key) {
-        System.out.println(getElementText(commonLocatorsProperties.getProperty("clientIDMID")));
-        return fetchReceiptValues(getElementText(commonLocatorsProperties.getProperty("clientIDMID"))).get(key);
+//    public String validateClientAndMID(String key) {
+//        //System.out.println(getElementText(commonLocatorsProperties.getProperty("clientIDMID")));
+//     //   return fetchReceiptValuesbatchID(getElementText(commonLocatorsProperties.getProperty("clientIDMID"))).get(key);
+//
+//    }
+
+    public String validateValuesFromChargeslip(String key) {
+        String newLoc= String.format(commonLocatorsProperties.getProperty("chargeslipKey"),"'"+key+"'");
+        System.out.println(getElementText(newLoc));
+        return fetchValueFromChargeslip(getElementText(newLoc)).get(key);
+    }
+
+
+    public Map<String, String> fetchValueFromChargeslip(String input_String) {
+
+        String[] str = input_String.split(":");
+        String number_output = str[1].replaceAll("[^0-9]", "");
+        String string_output = str[1].replaceAll("[^A-Za-z]", "");
+        values.put(str[0], number_output);
+        values.put(string_output, str[2]);
+        System.out.println("Key 1" + str[0]);
+        System.out.println("Value of key 1 " + number_output);
+        System.out.println("Key 2 " + string_output);
+        System.out.println("Value of Key2" + str[2]);
+        return values;
     }
 
     public String validateCompletionStatus() {
@@ -181,20 +205,21 @@ public class CommonHelperPage extends BaseUtilsUI {
         }
     }
 
-    public Map<String, String> fetchReceiptValues(String param) {
 
-        String[] array = param.split(" :");
-        String[] array1 = array[1].split(" ");
-        values.put(array[0], array1[0]);
-        values.put(array1[1], array[2]);
-        return values;
-    }
 
-    public void validateInvalidTxnInputError(){
-        if (isElementDisplayed(commonLocatorsProperties.getProperty("invalidTxnInput"))){
+
+
+
+    public void validateInvalidTxnInputError() {
+        if (isElementDisplayed(commonLocatorsProperties.getProperty("invalidTxnInput"))) {
             clickOnElement(commonLocatorsProperties.getProperty("dismissError"));
-           // throw new Exception("Invalid Txn Input Error Message Displayed. Please Check!");
+            // throw new Exception("Invalid Txn Input Error Message Displayed. Please Check!");
 
         }
+
+    }
+
+    public void closeDriver() {
+        tearDown();
     }
 }

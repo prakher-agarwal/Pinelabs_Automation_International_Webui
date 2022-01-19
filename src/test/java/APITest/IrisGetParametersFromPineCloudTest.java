@@ -2,7 +2,7 @@ package APITest;
 
 import API.Builders.GetJWTToken;
 import API.Builders.IrisGetParametersFromPineCloud;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
 import API.Helpers.IrisAPIHelpers;
 import API.PojoFiles.GetJWTResponse;
 import TestBase.TestUtilAPI;

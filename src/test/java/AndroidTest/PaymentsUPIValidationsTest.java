@@ -5,12 +5,19 @@ import AndroidUI.Base.BaseUtilsUI;
 import AndroidUI.POM.DeviceHomePage;
 import AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
-import Base.CommonUtils;
+import CommonBase.CommonUtils;
+import CommonBase.ExtentReport;
 import TestBase.TestUtils;
-import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +35,16 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         deviceHomePageInstance = getDeviceHomePageInstance();
         commonHelperPageInstance = getCommonHelperPageInstance();
         upiCallbackIciciInstance = UpiCallbackIcici.getInstance(UpiCallbackIcici.defaultrequest);
+        ExtentReport.initialiseReport();
+    }
+
+    @AfterMethod
+    public void getResult(ITestResult result) {
+        ExtentReport.generateReport(result);
     }
 
     @Test(description = "Validate the E2E UPI transaction through Payments App")
     public void iCICI_UPI_001() {
-
         deviceHomePageInstance.openPaymentsApp();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
@@ -40,26 +52,31 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.selectUPISaleRequest();
         commonHelperPageInstance.enterAmount(1);
         commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(6));
-        // commonHelperPageInstance.selectUPIpaymode("ICICI");
+        commonHelperPageInstance.selectUPIpaymode("ICICI");
         commonHelperPageInstance.scanQR();
-        String merchID = commonHelperPageInstance.getValueFromQR("tr");
-        upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
-        upiCallbackIciciInstance.getRequest().setTxnStatus("SUCCESS");
-        upiCallbackIciciInstance.createAndExecute();
-
-        String c = commonHelperPageInstance.validateClientAndMID("CLIENT ID");
-        System.out.println("client id is" + c);
-        String m = commonHelperPageInstance.validateClientAndMID("MID");
-        System.out.println("Mid is " + m);
-        String d = commonHelperPageInstance.validateCompletionStatus();
-        System.out.println("completion status is " + d);
-        Assert.assertEquals(c, "293188");
-        Assert.assertEquals(m, "5651");
-        Assert.assertEquals(d, "UPI SALE COMPLETE");
         commonHelperPageInstance.clickProceedOnReceipt();
-        commonHelperPageInstance.printReceipt("NO");
-        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErroCode(), "00");
-        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErrorMsg(), "Success");
+//        String merchID = commonHelperPageInstance.getValueFromQR("tr");
+//        upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
+//        upiCallbackIciciInstance.getRequest().setTxnStatus("SUCCESS");
+//        upiCallbackIciciInstance.createAndExecute();
+        String c = commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID");
+        String m = commonHelperPageInstance.validateValuesFromChargeslip("MID");
+        // String d = commonHelperPageInstance.validateCompletionStatus();
+//        System.out.println("completion status is " + d);
+        System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
+        System.out.println("ROC Id is " + commonHelperPageInstance.validateValuesFromChargeslip("ROC"));
+        commonHelperPageInstance.clickProceedOnReceipt();
+
+//        Assert.assertEquals(c, "293188");
+//        Assert.assertEquals(m, "5651");
+        //Assert.assertEquals(d, "UPI SALE COMPLETE");
+//        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErroCode(), "00");
+//        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErrorMsg(), "Success");
+
+    }
+
+    @Test(description = "Verify the ICICI UPI \"Charge\" Transaction.")
+    public void iCICI_UPI_002() {
 
     }
 
@@ -71,8 +88,11 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         commonHelperPageInstance.getLastTransaction();
         commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        System.out.println("CLIENT Id is " + commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
+        System.out.println("MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
+        System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
+        System.out.println("ROC Id is " + commonHelperPageInstance.validateValuesFromChargeslip("ROC"));
         commonHelperPageInstance.clickProceedOnReceipt();
-
     }
 
     @Test(description = "Verify the ICICI UPI \"GetStatus- Any\" Transaction.")
@@ -82,6 +102,10 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.clickBrowseOtherOptions();
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         commonHelperPageInstance.getAnyTransaction(233, 9006);
+        System.out.println("CLIENT Id is " + commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
+        System.out.println("MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
+        System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
+        System.out.println("ROC Id is " + commonHelperPageInstance.validateValuesFromChargeslip("ROC"));
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
@@ -115,6 +139,11 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
+    @Test(description = "Perform ICICI UPI Transactions (4-Sale, 1-Void and 1-Reversal) and try to do batch settlement.")
+    public void iCICI_UPI_010() {
+
+    }
+
     // add duplicate copy validation
     @Test(description = "Generate \"Reprint-Last\" transaction chargeslip after successful ICICI_UPI transaction.")
     public void iCICI_UPI_011() {
@@ -139,22 +168,85 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
-    @Test(description = "Validate the void in UPI transaction")
+    @Test(description = "Perform ICICI UPI Transaction (4-Sale, 1-Void and 1-Reversal) after that try to Generate Reports - Curr. Batch Summary after ")
     public void iCICI_UPI_013() {
+
+    }
+
+    @Test(description = "Perform ICICI UPI Transaction (4-Sale, 1-Void and 1-Reversal) after that try to Generate  \"Reports - Batch Detail Summary\"")
+    public void iCICI_UPI_014() {
+
+    }
+
+    @Test(description = "Perform ICICI UPI Transaction (4-Sale, 1-Void and 1-Reversal) After that Settle Batch, then try to Generate Reports - Last Batch Summary ")
+    public void iCICI_UPI_015() {
+
+    }
+
+    @Test(description = "Perform ICICI UPI Sale Transaction with QR code display time out  when successful payment done after time out.")
+    public void iCICI_UPI_016() {
+
+    }
+
+    @Test(description = "Perform ICICI UPI Sale Transaction with QR code display time out when payment not done after time out.")
+    public void iCICI_UPI_017() {
+
+    }
+
+    @Test(description = "Verify the ICICI UPI Sale Transaction when Host is unavailable/Not responding.")
+    public void iCICI_UPI_019() {
+
+    }
+
+    @Test(description = "verify ICICI UPI settlement when only reversal in a batch")
+    public void iCICI_UPI_020() {
+
+    }
+
+    @Test(description = "Verify the ICICI UPI Transaction and call back not received in certian time and auto\" Get status\" has been called.")
+    public void iCICI_UPI_022() {
+
+    }
+
+    @Test(description = "Verify the ICICI UPI Transaction and Time out occurred and payment done.")
+    public void iCICI_UPI_023() {
+
+    }
+
+    @Test(description = "Verify the ICICI UPI Transaction and Time out occurred and payment not done.")
+    public void iCICI_UPI_024() {
+
+    }
+
+    @Test(description = "Verify the ICICI UPI settlement when only void in a batch.")
+    public void iCICI_UPI_025() {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         paymentsUPIValidationInstance.selectVoid();
-        commonHelperPageInstance.enterBatchID(9009);
-        commonHelperPageInstance.enterROCID(122);
+        commonHelperPageInstance.enterBatchID(9011);
+        commonHelperPageInstance.enterROCID(172);
         commonHelperPageInstance.enterAmount(1);
         commonHelperPageInstance.clickProceedOnReceipt();
+    }
+
+    @Test(description = "Verify the ICICI UPI settlement when only void Reversal in a batch.")
+    public void iCICI_UPI_026() {
+
+    }
+
+    @Test(description = "Verify the ICICI UPI settlement when ICICI UPI host is not availabale/Not responding")
+    public void iCICI_UPI_027() {
+
+        // In sql server auxi db database and table name: upi_hostConfigtable: column : upiHostiporURLenter a dummy value . save.
+        // auxiControllerServer pe login
+        // and settle the device and do transaction
     }
 
     // add error assertion
     @Test(description = "Validate the void in UPI transaction for already void ROC ID")
-    public void upiTransaction_TC007() {
+    public void iCICI_UPI_028() {
         commonHelperPageInstance.openPaytmFromHome();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
@@ -167,7 +259,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     }
 
     @Test(description = "Validate the reprint receipt of last void UPI transaction  ")
-    public void upiTransaction_TC008() {
+    public void iCICI_UPI_029() {
         deviceHomePageInstance.openPaymentsApp();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
@@ -188,7 +280,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     }
 
     @Test(description = "Validate the reprint receipt of last void UPI transaction  ")
-    public void upiTransaction_TC009() {
+    public void iCICI_UPI_030() {
         deviceHomePageInstance.openPaymentsApp();
         commonHelperPageInstance.clickOnFingerIcon();
         commonHelperPageInstance.clickBrowseOtherOptions();
@@ -206,36 +298,34 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.getLastTransaction();
         commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
         commonHelperPageInstance.clickProceedOnReceipt();
-    }
-
-
-    //    @Test
-//    public void chkdb() throws SQLException {
-//        String connectionUrl =
-//                "jdbc:sqlserver://192.168.101.69:1433;";
-//
-//        try (Connection connection = DriverManager.getConnection(connectionUrl);
-//             Statement statement = connection.createStatement()) {
-//            System.out.println("statement" + statement);
-//        }
-//        // Handle any errors that may have occurred.
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    @Test(invocationCount = 2)
-    public void check() {
-        value.put("Client ID", "1234");
-        value.put("m ID", "5678");
-        for (Map.Entry<String, String> entry : value.entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
-        }
     }
 
     @Test
-    public void chk2() {
-        for (Map.Entry<String, String> entry : value.entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
+    public void remoteConnection() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("cmdkey /generic:" + "10.208.1.55" +
+                " /user:" + "vanshika.chauhan" +
+                " /pass:" + "Crypto@2022");
+        p.destroy();
+
+        Runtime.getRuntime().exec("mstsc /v: " + "10.208.1.55" + " /f /console");
+        Thread.sleep(20000);
+        Runtime.getRuntime().exec("C:\\Users\\vanshika.chauhan\\Documents\\autoITScripts\\autoITEnterCreds.exe");
+    }
+
+    @Test
+    public void sqlDbConnection() {
+        try {
+            // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:sqlserver://192.168.101.69:51633;integratedSecurity=true;", "vanshika.chauhan@pinelabs.com", "Crypto@2022");
+            //here sonoo is database name, root is username and password
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from UPI_HOST_CONFIG_TBL");
+            while (rs.next())
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }

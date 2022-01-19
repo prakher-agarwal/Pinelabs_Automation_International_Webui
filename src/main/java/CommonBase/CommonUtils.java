@@ -1,30 +1,27 @@
-package Base;
-
+package CommonBase;
 import Constants.Paths;
 import com.mongodb.client.*;
 import org.bson.Document;
-import org.openqa.selenium.TakesScreenshot;
 
-import static com.mongodb.client.model.Sorts.ascending;
 import java.io.File;
 import java.io.FileReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Sorts.ascending;
 
 public class CommonUtils {
     static MongoCollection<Document> tableName;
     static MongoDatabase database;
     static MongoClient client;
 
-    public static Properties readPropertyfile(String folderName, String propertyFileName) {
+    public static Properties readPropertyfile(String propertyFilePath) {
 
         Properties p = null;
         try {
-            FileReader reader = new FileReader(Paths.propertiesBasePath + folderName + File.separator + propertyFileName);
+            FileReader reader = new FileReader(propertyFilePath);
             p = new Properties();
             p.load(reader);
 
@@ -37,7 +34,7 @@ public class CommonUtils {
 
     public static MongoDatabase dbValidation() {
 
-        client = MongoClients.create(CommonUtils.readPropertyfile("Database", "db.properties").getProperty("mongoDbconnectionURL"));
+        client = MongoClients.create(CommonUtils.readPropertyfile(Paths.dbPropertiesPath).getProperty("mongoDbconnectionURL"));
         MongoIterable<String> dbname = client.listDatabaseNames();
         for (String db : dbname) {
             if (db.equals("admin")) {
@@ -80,6 +77,8 @@ public class CommonUtils {
         return random.nextInt(max - min) + min;
 
     }
+
+
 
 
 }
