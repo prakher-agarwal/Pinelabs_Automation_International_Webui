@@ -3,7 +3,6 @@ package com.pinelabs.RnD.WebUI.POM;
 import com.pinelabs.RnD.CommonUtils.CommonUtils;
 import com.pinelabs.RnD.WebUI.Base.SeleniumUtilities;
 import com.pinelabs.RnD.WebUI.Constants.FilePaths;
-
 import java.util.Properties;
 
 public class GoogleDemo extends SeleniumUtilities {
