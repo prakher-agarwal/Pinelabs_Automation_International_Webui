@@ -52,6 +52,8 @@ public class DeviceHomePage extends AppiumUtilities {
 
     public void openPaymentsApp() {
 
+
+
         if (isElementDisplayed(deviceHome.getProperty("imageView"))) {
             clickOnElement(deviceHome.getProperty("imageView"));
             clickOnElement(deviceHome.getProperty("homeAppPayments"));

@@ -52,8 +52,6 @@ public class AppiumUtilities {
         driver.findElementByXPath("").click();
 
     }
-
-
     private static DesiredCapabilities setCapabilities() {
         caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
