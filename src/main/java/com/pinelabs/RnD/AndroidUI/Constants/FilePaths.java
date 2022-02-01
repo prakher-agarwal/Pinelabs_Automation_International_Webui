@@ -4,7 +4,7 @@ import java.io.File;
 
 public class FilePaths {
     public static final String resourceFolderPath = "src" + File.separator + "main" + File.separator + "resources" + File.separator;
-    public static final String devicePropertiesPath = resourceFolderPath + "CommonProperties" + File.separator + "AndroidAndroidDevice.properties";
+    public static final String devicePropertiesPath = resourceFolderPath + "CommonProperties" + File.separator + "AndroidDevice.properties";
     public static final String apiPropertiesPath = resourceFolderPath + "CommonProperties" + File.separator + "API.properties";
     public static final String dbPropertiesPath = resourceFolderPath + "Database" + File.separator + "db.properties";
     public static final String commonLocPropertiesPath = resourceFolderPath + "AndroidLocatorsRepo" + File.separator + "CommonLocators.properties";

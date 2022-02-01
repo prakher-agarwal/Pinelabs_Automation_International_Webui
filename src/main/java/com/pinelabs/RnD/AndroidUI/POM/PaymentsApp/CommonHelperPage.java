@@ -176,22 +176,22 @@ public class CommonHelperPage extends AppiumUtilities {
 
     public String validateValuesFromChargeslip(String key) {
         String newLoc= String.format(commonLocatorsProperties.getProperty("chargeslipKey"),"'"+key+"'");
-        System.out.println(getElementText(newLoc));
+      //  System.out.println(getElementText(newLoc));
         return fetchValueFromChargeslip(getElementText(newLoc)).get(key);
     }
 
 
     public Map<String, String> fetchValueFromChargeslip(String input_String) {
-String s = "abc:      123    xc: 782";
+
         String[] str = input_String.split(":");
         String number_output = str[1].replaceAll("[^0-9]", "");
         String string_output = str[1].replaceAll("[^A-Za-z]", "");
         values.put(str[0], number_output);
         values.put(string_output, str[2]);
-        System.out.println("Key 1" + str[0]);
-        System.out.println("Value of key 1 " + number_output);
-        System.out.println("Key 2 " + string_output);
-        System.out.println("Value of Key2" + str[2]);
+//        System.out.println("Key 1" + str[0]);
+//        System.out.println("Value of key 1 " + number_output);
+//        System.out.println("Key 2 " + string_output);
+//        System.out.println("Value of Key2" + str[2]);
         return values;
     }
 

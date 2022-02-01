@@ -52,14 +52,14 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(6));
         commonHelperPageInstance.selectUPIpaymode("ICICI");
 
-       // commonHelperPageInstance.scanQR();
+        // commonHelperPageInstance.scanQR();
         commonHelperPageInstance.clickProceedOnReceipt();
 //        String merchID = commonHelperPageInstance.getValueFromQR("tr");
 //        upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
 //        upiCallbackIciciInstance.getRequest().setTxnStatus("SUCCESS");
 //        upiCallbackIciciInstance.createAndExecute();
-        String c = commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID");
-        String m = commonHelperPageInstance.validateValuesFromChargeslip("MID");
+        System.out.println( "Client ID is " +commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
+        System.out.println( "MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
         // String d = commonHelperPageInstance.validateCompletionStatus();
 //        System.out.println("completion status is " + d);
         System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
@@ -300,21 +300,21 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     }
 
 
-
-    @Test
+  //  @Test
     public void sqlDbConnection() {
+
         try {
-             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:sqlserver://192.168.101.69:51633;integratedSecurity=true;");
-            System.out.println("connecteddd");
+                    "jdbc:sqlserver://192.168.101.69:51633;databaseName=PLUTUS_HUBDB;integratedSecurity=true");
+            System.out.println("SQL Connection established");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from UPI_HOST_CONFIG_TBL");
+            ResultSet rs = stmt.executeQuery("select * from pl_client_hardware_details_tbl where client_id=292371");
             while (rs.next())
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3));
             con.close();
         } catch (Exception e) {
             System.out.println(e);
+            System.out.println("ERROR occured when connecting to SQL");
         }
     }
 }
