@@ -140,7 +140,6 @@ public class AppiumUtilities {
 
         switch (locatorType) {
             case "ID":
-
                 element= (MobileElement) ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue));
                 break;
             case "CLASSNAME":
