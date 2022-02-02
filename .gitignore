@@ -1,0 +1,7 @@
+# Default ignored files
+/shelf/
+/.idea/
+ParagonAutomationFramework.iml
+ParagonAutomationFramework.ipr
+ParagonAutomationFramework.iws
+target/
