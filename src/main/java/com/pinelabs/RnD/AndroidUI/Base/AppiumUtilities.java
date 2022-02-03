@@ -1,12 +1,12 @@
 package com.pinelabs.RnD.AndroidUI.Base;
 
-import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 import com.pinelabs.RnD.CommonUtils.CommonUtils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -15,13 +15,11 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
-import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
@@ -38,7 +36,7 @@ import java.util.Date;
 import java.util.List;
 
 public class AppiumUtilities {
-//    static String Appium_Node_Path = "C:\\Program Files (x86)\\Appium\\node.exe";
+    //    static String Appium_Node_Path = "C:\\Program Files (x86)\\Appium\\node.exe";
 //    static String Appium_JS_Path = "C:\\Program Files (x86)\\Appium\\node_modules\\appium\\bin\\appium.js";
     static AppiumDriverLocalService service;
     static String service_url;
@@ -48,11 +46,6 @@ public class AppiumUtilities {
     static AppiumDriver<MobileElement> driver;
     static WebDriverWait wait;
 
-    public void launch() {
-        AppiumDriver<MobileElement> driver = new AppiumDriver<MobileElement>(caps);
-        driver.findElementByXPath("").click();
-
-    }
     private static DesiredCapabilities setCapabilities() {
         caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.PLATFORM, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
@@ -116,6 +109,7 @@ public class AppiumUtilities {
         service.stop();
 
     }
+
     public static void setUpConnection() {
         caps = setCapabilities();
         // service_url = appiumStart();
@@ -125,7 +119,7 @@ public class AppiumUtilities {
             e.printStackTrace();
         }
         driver = new AndroidDriver<MobileElement>(url, caps);
-        wait = new WebDriverWait(driver,30);
+        wait = new WebDriverWait(driver, 30);
         System.out.println("Connection with Appium is established");
     }
 
@@ -140,52 +134,52 @@ public class AppiumUtilities {
 
         switch (locatorType) {
             case "ID":
-
-                element= (MobileElement) ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue));
+                element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
                 break;
             case "CLASSNAME":
-                element = (MobileElement) (ExpectedConditions.visibilityOfElementLocated(By.className(locatorValue)));
+                element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(locatorValue)));
                 break;
             case "XPATH":
-                element = (MobileElement) (ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
+                element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
                 break;
             case "ACCESSIBILITYID":
-
             case "ANDROIDUIAUTOMATOR":
             case "iOS UI Automation":
             case "Android View Tag":
-
             default:
                 throw new NoSuchElementException("Please check the locator");
         }
         return element;
-
-
     }
 
     public List<WebElement> getElements(String locator) {
-        List<WebElement> element;
+        List<WebElement> element = null;
         String[] loc = getLocatorTypeAndValue(locator);
         String locatorType = loc[0].substring(1).toUpperCase();
         String locatorValue = loc[1];
         switch (locatorType) {
             case "ID":
-               element= (List<WebElement>) ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue));
+                element = (List<WebElement>) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
+                break;
             case "CLASSNAME":
             case "XPATH":
-                element = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locatorValue));
-                return element;
+                element = (List<WebElement>) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
+                break;
             case "ACCESSIBILITYID":
-                    driver.findElementsByAccessibilityId(locatorValue);
+                driver.findElementsByAccessibilityId(locatorValue);
+                break;
             case "ANDROIDUIAUTOMATOR":
             case "iOS UI Automation":
             case "Android View Tag":
             default:
                 throw new NoSuchElementException("Please check the locator");
         }
+        return element;
+
     }
 
     public int getElementsSize(String locator) {
+
         return getElements(locator).size();
     }
 
