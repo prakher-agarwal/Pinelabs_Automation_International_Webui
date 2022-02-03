@@ -39,7 +39,6 @@ public class AppiumUtilities {
     //    static String Appium_Node_Path = "C:\\Program Files (x86)\\Appium\\node.exe";
 //    static String Appium_JS_Path = "C:\\Program Files (x86)\\Appium\\node_modules\\appium\\bin\\appium.js";
     static AppiumDriverLocalService service;
-    static String service_url;
     static AppiumServiceBuilder builder;
     private static DesiredCapabilities caps;
     static URL url;
