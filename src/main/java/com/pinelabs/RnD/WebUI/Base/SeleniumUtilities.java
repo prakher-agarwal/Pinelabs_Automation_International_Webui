@@ -587,29 +587,29 @@ public class SeleniumUtilities {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         switch (locatorType) {
             case "XPATH":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue));
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
                 break;
             case "CSS":
             case "CSSSELECTOR":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locatorValue));
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locatorValue)));
                 break;
             case "NAME":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.name(locatorValue));
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locatorValue)));
                 break;
             case "CLASSNAME":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.className(locatorValue));
+                element = wait.until( ExpectedConditions.visibilityOfElementLocated(By.className(locatorValue)));
                 break;
             case "LINKTEXT":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.linkText(locatorValue));
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(locatorValue)));
                 break;
             case "PARTIALLINKTEXT":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(locatorValue));
+                element = wait.until( ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(locatorValue)));
                 break;
             case "TAGNAME":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.tagName(locatorValue));
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(locatorValue)));
                 break;
             case "ID":
-                element = (WebElement) ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue));
+                element = wait.until( ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
                 break;
         }
 
@@ -631,29 +631,29 @@ public class SeleniumUtilities {
         List<WebElement> listOfElements = null;
         switch (locatorType) {
             case "XPATH":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locatorValue));
+                listOfElements =wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locatorValue)));
                 break;
             case "CSS":
             case "CSSSELECTOR":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(locatorValue));
+                listOfElements =wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(locatorValue)));
                 break;
             case "NAME":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name(locatorValue));
+                listOfElements =wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name(locatorValue)));
                 break;
             case "CLASSNAME":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className(locatorValue));
+                listOfElements = wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className(locatorValue)));
                 break;
             case "LINKTEXT":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText(locatorValue));
+                listOfElements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText(locatorValue)));
                 break;
             case "PARTIALLINKTEXT":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.partialLinkText(locatorValue));
+                listOfElements = wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy(By.partialLinkText(locatorValue)));
                 break;
             case "TAGNAME":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName(locatorValue));
+                listOfElements = wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName(locatorValue)));
                 break;
             case "ID":
-                listOfElements = (List<WebElement>) ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(locatorValue));
+                listOfElements =wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(locatorValue)));
                 break;
         }
 
