@@ -52,12 +52,12 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(6));
         commonHelperPageInstance.selectUPIpaymode("ICICI");
 
-        // commonHelperPageInstance.scanQR();
-        commonHelperPageInstance.clickProceedOnReceipt();
-//        String merchID = commonHelperPageInstance.getValueFromQR("tr");
-//        upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
-//        upiCallbackIciciInstance.getRequest().setTxnStatus("SUCCESS");
-//        upiCallbackIciciInstance.createAndExecute();
+        commonHelperPageInstance.scanQR();
+      //  commonHelperPageInstance.clickProceedOnReceipt();
+        String merchID = commonHelperPageInstance.getValueFromQR("tr");
+        upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
+        upiCallbackIciciInstance.getRequest().setTxnStatus("SUCCESS");
+        upiCallbackIciciInstance.createAndExecute();
         System.out.println( "Client ID is " +commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
         System.out.println( "MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
         // String d = commonHelperPageInstance.validateCompletionStatus();

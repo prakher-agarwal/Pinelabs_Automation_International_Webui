@@ -19,6 +19,7 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -117,7 +118,7 @@ public class AppiumUtilities {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        driver = new AndroidDriver<MobileElement>(url, caps);
+        driver = new AndroidDriver<>(url, caps);
         wait = new WebDriverWait(driver, 30);
         System.out.println("Connection with Appium is established");
     }
