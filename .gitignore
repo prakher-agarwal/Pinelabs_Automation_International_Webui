@@ -5,3 +5,4 @@ ParagonAutomationFramework.iml
 ParagonAutomationFramework.ipr
 ParagonAutomationFramework.iws
 target/
+extentReportsOutput/

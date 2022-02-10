@@ -14,12 +14,11 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,10 +36,8 @@ import java.util.Date;
 import java.util.List;
 
 public class AppiumUtilities {
-    //    static String Appium_Node_Path = "C:\\Program Files (x86)\\Appium\\node.exe";
-//    static String Appium_JS_Path = "C:\\Program Files (x86)\\Appium\\node_modules\\appium\\bin\\appium.js";
+    static Logger log = Logger.getLogger(AppiumUtilities.class);
     static AppiumDriverLocalService service;
-    static AppiumServiceBuilder builder;
     private static DesiredCapabilities caps;
     static URL url;
     static AppiumDriver<MobileElement> driver;
@@ -48,7 +45,7 @@ public class AppiumUtilities {
 
     private static DesiredCapabilities setCapabilities() {
         caps = new DesiredCapabilities();
-        caps.setCapability(MobileCapabilityType.PLATFORM, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_VERSION"));
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("DEVICE_NAME"));
         caps.setCapability(MobileCapabilityType.UDID, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("UDID"));
@@ -128,10 +125,7 @@ public class AppiumUtilities {
         MobileElement element = null;
         String[] loc = getLocatorTypeAndValue(locator);
         String locatorType = loc[0].substring(1).toUpperCase();
-        //System.out.println(locatorType);
         String locatorValue = loc[1];
-        //System.out.println(locatorValue);
-
         switch (locatorType) {
             case "ID":
                 element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
@@ -194,7 +188,6 @@ public class AppiumUtilities {
             getElement(locator).click();
         } else
             throw new NoSuchElementException("Element not found . Please check locator!" + locator);
-        //   System.out.println("Clicked on " + locator);
     }
 
     public void clickUsingJS(String locator) {
@@ -281,8 +274,7 @@ public class AppiumUtilities {
 
     public void navigateBack() {
         driver.navigate().back();
-    } //9899293631
-
+    }
 
     private BufferedImage generateImage(MobileElement locator, File screenshot) throws IOException {
         BufferedImage fullImage = ImageIO.read(screenshot);
@@ -299,7 +291,6 @@ public class AppiumUtilities {
 
         return qrCodeImage;
     }
-
     public String decodeQr(String locator) {
         MobileElement qrCodeElement = getElement(locator);
         File screenshot = driver.getScreenshotAs(OutputType.FILE);
@@ -312,7 +303,6 @@ public class AppiumUtilities {
         System.out.println("content = " + content);
         return content;
     }
-
     private static String decodeQRCode(BufferedImage qrCodeImage) throws NotFoundException {
         Result result = null;
         LuminanceSource source = new BufferedImageLuminanceSource(qrCodeImage);
@@ -340,17 +330,15 @@ public class AppiumUtilities {
     public static String getScreenshot(ITestResult result) {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-h-m-s");
-        System.out.println("Date is " + dateFormat.format(date));
-        String methodName = result.getMethod().getMethodName() + "_";
-        String name = "FailedMethod" + methodName + dateFormat.format(date) + ".png";
-        System.out.println("Name of the string is " + name);
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String path = FilePaths.extentReportScreenshot + result.getName() + ".png";
+
+        File src = driver.getScreenshotAs(OutputType.FILE);
+        String path = FilePaths.screenshotsPath + result.getName() + dateFormat.format(date) + ".png";
         File dest = new File(path);
         try {
-            FileUtils.copyFile(screenshotFile, dest);
+            FileUtils.copyFile(src, dest);
         } catch (IOException e) {
-            System.out.println("Could not capture screenshot" + e.getMessage());
+            log.error("Could not capture screenshot" + e.getMessage());
+
         }
         return path;
     }

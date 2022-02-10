@@ -1,7 +1,7 @@
 package com.pinelabs.RnD.APITest;
 
 import com.pinelabs.RnD.API.Builders.GetJWTToken;
-import com.pinelabs.RnD.CommonUtils.ExtentReport;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import com.pinelabs.RnD.AndroidTest.TestUtils;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -15,7 +15,7 @@ public class GetJWTTest extends TestUtils {
     @BeforeClass
     public void getInstances() {
         getJWTToken = GetJWTToken.getInstance(GetJWTToken.defaultrequest);
-        ExtentReport.initialiseReport();
+
     }
 
     @Test(description = "Validate the response when all the parameters are correct")
@@ -27,11 +27,6 @@ public class GetJWTTest extends TestUtils {
         //  ExtentReport.logger.log(Status.INFO,getJWTToken.getResponse().toString());
         String token = getJWTToken.getResponse().getAccessToken().toString();
         System.out.println(token);
-    }
-
-    @AfterMethod
-    public void generate(ITestResult result) {
-        ExtentReport.generateReport(result);
     }
 
     @Test(description = "Validate the response when hardwareID is not sent")

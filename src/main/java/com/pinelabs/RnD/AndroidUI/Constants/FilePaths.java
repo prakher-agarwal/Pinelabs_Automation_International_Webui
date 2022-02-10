@@ -13,6 +13,7 @@ public class FilePaths {
     public static final String irisSettingsPropertiesPath = resourceFolderPath + "AndroidLocatorsRepo" + File.separator + "IrisSettings.properties";
     public static final String amazonPayPropertiesPath = resourceFolderPath + "AndroidLocatorsRepo" + File.separator + "Payments_AmazonPay.properties";
     public static final String upiPayPropertiesPath = resourceFolderPath + "AndroidLocatorsRepo" + File.separator + "Payments_UPIPay.properties";
-    public static final String extentReportPath = "C:\\Users\\vanshika.chauhan\\IdeaProjects\\Alp_Automation_Testing\\target\\extentReportsOutput\\";
-    public static final String extentReportScreenshot = "C:\\Users\\vanshika.chauhan\\IdeaProjects\\Alp_Automation_Testing\\target\\extentReportsOutput\\screenshot\\";
+    public static final String extenthtmlReportPath = System.getProperty("user.dir") + File.separator + "extentReportsOutput" + File.separator + "htmlReports" + File.separator;
+    public static final String extentReportProperties = resourceFolderPath + "CommonProperties" + File.separator + "ExtentReports.properties";
+    public static final String screenshotsPath = System.getProperty("user.dir") + File.separator + "extentReportsOutput" + File.separator + "screenshots" + File.separator;
 }

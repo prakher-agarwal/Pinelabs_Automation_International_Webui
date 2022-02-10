@@ -6,6 +6,9 @@ import com.pinelabs.RnD.AndroidUI.POM.IrisApp.IrisSettingsPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
 public class TestUtils {
@@ -20,14 +23,19 @@ public class TestUtils {
 
     @BeforeSuite
     public void getInstances() {
-       // BaseUtilsUI.setUpConnection();
+        // BaseUtilsUI.setUpConnection();
 
         getIrisHomePageInstance = getIrisHomePageInstance();
         getIrisSettingsPage = getIrisSettingsPageInstance();
         getDeviceHomePageInstance = getDeviceHomePageInstance();
+        ExtentSparkReport.initialise();
 
     }
 
+    @AfterMethod
+    public void getResult(ITestResult result) {
+        ExtentSparkReport.generateReport(result);
+    }
 
 
     public IrisHomePage getIrisHomePageInstance() {
@@ -59,7 +67,7 @@ public class TestUtils {
     }
 
 
-   // @AfterClass
+    // @AfterClass
     public void closeDbConnection() {
         getCommonHelperPageInstance().closeDriver();
     }

@@ -6,9 +6,7 @@ import com.pinelabs.RnD.AndroidUI.POM.DeviceHomePage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.CommonUtils;
-import com.pinelabs.RnD.CommonUtils.ExtentReport;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -33,12 +31,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         deviceHomePageInstance = getDeviceHomePageInstance();
         commonHelperPageInstance = getCommonHelperPageInstance();
         upiCallbackIciciInstance = UpiCallbackIcici.getInstance(UpiCallbackIcici.defaultrequest);
-        ExtentReport.initialiseReport();
-    }
-
-    @AfterMethod
-    public void getResult(ITestResult result) {
-        ExtentReport.generateReport(result);
+        ExtentSparkReport.initialise();
     }
 
     @Test(description = "Validate the E2E UPI transaction through Payments App")
@@ -50,16 +43,15 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.selectUPISaleRequest();
         commonHelperPageInstance.enterAmount("1");
         commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(6));
-        commonHelperPageInstance.selectUPIpaymode("ICICI");
-
+        commonHelperPageInstance.selectUPIpaymode("ICICIw");
         commonHelperPageInstance.scanQR();
-      //  commonHelperPageInstance.clickProceedOnReceipt();
+        //  commonHelperPageInstance.clickProceedOnReceipt();
         String merchID = commonHelperPageInstance.getValueFromQR("tr");
         upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
         upiCallbackIciciInstance.getRequest().setTxnStatus("SUCCESS");
         upiCallbackIciciInstance.createAndExecute();
-        System.out.println( "Client ID is " +commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
-        System.out.println( "MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
+        System.out.println("Client ID is " + commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
+        System.out.println("MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
         // String d = commonHelperPageInstance.validateCompletionStatus();
 //        System.out.println("completion status is " + d);
         System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
@@ -300,7 +292,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     }
 
 
-  //  @Test
+    //  @Test
     public void sqlDbConnection() {
 
         try {
