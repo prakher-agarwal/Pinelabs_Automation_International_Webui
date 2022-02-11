@@ -1,5 +1,6 @@
 package com.pinelabs.RnD.AndroidTest;
 
+import com.aventstack.extentreports.Status;
 import com.pinelabs.RnD.API.Builders.UpiCallbackIcici;
 import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
 import com.pinelabs.RnD.AndroidUI.POM.DeviceHomePage;
@@ -8,6 +9,7 @@ import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.CommonUtils;
 import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.sql.Connection;
@@ -31,20 +33,35 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         deviceHomePageInstance = getDeviceHomePageInstance();
         commonHelperPageInstance = getCommonHelperPageInstance();
         upiCallbackIciciInstance = UpiCallbackIcici.getInstance(UpiCallbackIcici.defaultrequest);
+
+    }
+    @BeforeSuite
+    public void m1(){
         ExtentSparkReport.initialise();
     }
 
-    @Test(description = "Validate the E2E UPI transaction through Payments App")
+    @Test(description = "Validate the E2E UPI transaction through Payments App", groups = "SMOKE")
     public void iCICI_UPI_001() {
+        extentLogger.assignAuthor("Vanshika").assignCategory("Regression").assignDevice("Google Chrome");
         deviceHomePageInstance.openPaymentsApp();
+        extentLogger.log(Status.PASS, "Opened Payments App");
         commonHelperPageInstance.clickOnFingerIcon();
+        extentLogger.pass("Clicked on finger Icon");
         commonHelperPageInstance.clickBrowseOtherOptions();
+        extentLogger.pass("Clicked on BrowseOtherOptions Button");
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
+        extentLogger.pass("Searching for UPI paymode");
         paymentsUPIValidationInstance.selectUPISaleRequest();
+        extentLogger.pass("Selected UPI Sale Request");
         commonHelperPageInstance.enterAmount("1");
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(6));
-        commonHelperPageInstance.selectUPIpaymode("ICICIw");
-        commonHelperPageInstance.scanQR();
+        extentLogger.pass("Entered Amount Rs 1");
+        int num = CommonUtils.generateRandonNumber(6);
+        commonHelperPageInstance.enterInvoiceNumber(num);
+        extentLogger.pass("Entered invoice number " + num);
+        commonHelperPageInstance.selectUPIpaymode("ICICI");
+        extentLogger.pass("Selected UPI Paymode ICICI");
+        String s = commonHelperPageInstance.scanQR();
+        extentLogger.pass("QR code is scanned : " + s);
         //  commonHelperPageInstance.clickProceedOnReceipt();
         String merchID = commonHelperPageInstance.getValueFromQR("tr");
         upiCallbackIciciInstance.getRequest().setMerchantTranId(merchID);
@@ -57,7 +74,6 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
         System.out.println("ROC Id is " + commonHelperPageInstance.validateValuesFromChargeslip("ROC"));
         commonHelperPageInstance.clickProceedOnReceipt();
-
 //        Assert.assertEquals(c, "293188");
 //        Assert.assertEquals(m, "5651");
         //Assert.assertEquals(d, "UPI SALE COMPLETE");
@@ -65,6 +81,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErrorMsg(), "Success");
 
     }
+
 
     @Test(description = "Verify the ICICI UPI \"Charge\" Transaction.")
     public void iCICI_UPI_002() {

@@ -23,9 +23,10 @@ import java.util.Date;
 public class ExtentSparkReport {
     public static ExtentReports extent;
     public static ExtentSparkReporter spark;
-    public static ExtentTest test, childTest, parentTest;
+    public static ExtentTest test, extentLogger;
 
     public static void initialise() {
+        System.out.println("Initialising Extent Reports");
         extent = new ExtentReports();
         System.out.println("html Path is " + FilePaths.extenthtmlReportPath + generateDynamicName() + ".html");
         spark = new ExtentSparkReporter(FilePaths.extenthtmlReportPath + generateDynamicName() + ".html");
@@ -55,25 +56,34 @@ public class ExtentSparkReport {
             e.printStackTrace();
         }
     }
-
     public void setMethod(Method m, Test result) {
         test = extent.createTest(getClass().getSimpleName() + " : " + m.getName() + "()");
-        childTest = test.createNode(result.description());
+        extentLogger = test.createNode(result.description());
     }
-
     public static void generateReport(ITestResult result) {
-
         if (result.getStatus() == ITestResult.SKIP) {
-            childTest.log(Status.SKIP, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.YELLOW));
+            extentLogger.log(Status.SKIP, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.YELLOW));
         } else if (result.getStatus() == ITestResult.FAILURE) {
             String screenPath = AppiumUtilities.getScreenshot(result);
-            childTest.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
-            childTest.fail("PFB screenshot of failed case :  " + "",
+            extentLogger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
+            extentLogger.fail("PFB screenshot of failed case :  " + "",
                     MediaEntityBuilder.createScreenCaptureFromPath(screenPath).build());
         }
         extent.flush();
 
     }
+    public static void generateReportAPI(ITestResult result) {
+
+        if (result.getStatus() == ITestResult.SKIP) {
+            extentLogger.log(Status.SKIP, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.YELLOW));
+        } else if (result.getStatus() == ITestResult.FAILURE) {
+
+            extentLogger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
+        }
+        extent.flush();
+
+    }
+
 
 
     public static String generateDynamicName() {

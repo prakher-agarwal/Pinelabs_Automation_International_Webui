@@ -7,11 +7,16 @@ import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
-public class TestUtils {
+import java.lang.reflect.Method;
+
+public class TestUtils extends ExtentSparkReport {
 
     public static IrisHomePage getIrisHomePageInstance;
     public static DeviceHomePage getDeviceHomePageInstance;
@@ -24,19 +29,27 @@ public class TestUtils {
     @BeforeSuite
     public void getInstances() {
         // BaseUtilsUI.setUpConnection();
-
+        //ExtentSparkReport.initialise();
         getIrisHomePageInstance = getIrisHomePageInstance();
         getIrisSettingsPage = getIrisSettingsPageInstance();
         getDeviceHomePageInstance = getDeviceHomePageInstance();
-        ExtentSparkReport.initialise();
-
     }
-
+    @BeforeMethod
+    public void setmethodAndCurrentClass(Method method, ITestContext result) {
+        Test test = method.getAnnotation(Test.class);
+        setMethod(method, test);
+    }
     @AfterMethod
     public void getResult(ITestResult result) {
+        System.out.println("In after Method");
         ExtentSparkReport.generateReport(result);
     }
 
+//    @AfterMethod
+//    public void getResult(ITestResult result) {
+//        ExtentSparkReport.generateReport(result);
+//    }
+//
 
     public IrisHomePage getIrisHomePageInstance() {
         getIrisHomePageInstance = IrisHomePage.getInstance();

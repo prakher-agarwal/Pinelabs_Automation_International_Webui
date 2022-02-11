@@ -1,13 +1,14 @@
 package com.pinelabs.RnD.APITest;
 
 import com.pinelabs.RnD.API.Builders.GetJWTToken;
-import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import com.pinelabs.RnD.AndroidTest.TestUtils;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import java.io.StringWriter;
 
 public class GetJWTTest extends TestUtils {
     GetJWTToken getJWTToken;
@@ -17,14 +18,16 @@ public class GetJWTTest extends TestUtils {
         getJWTToken = GetJWTToken.getInstance(GetJWTToken.defaultrequest);
 
     }
-
+    @BeforeSuite
+    public void launch() {
+        ExtentSparkReport.initialise();
+    }
     @Test(description = "Validate the response when all the parameters are correct")
     public void getJWTToke_TC001() {
 
         getJWTToken.getRequest().setHardwareid("0822398347");
         getJWTToken.getRequest().setDevicesubtype("82");
         getJWTToken.createAndExecute();
-        //  ExtentReport.logger.log(Status.INFO,getJWTToken.getResponse().toString());
         String token = getJWTToken.getResponse().getAccessToken().toString();
         System.out.println(token);
     }
@@ -34,7 +37,6 @@ public class GetJWTTest extends TestUtils {
         getJWTToken.getRequest().setHardwareid(null);
         getJWTToken.getRequest().setDevicesubtype("82");
         getJWTToken.createAndExecute();
-        // Assert.assertEquals(getJWTToken.getResponse().getAccessToken(), "null");
         Assert.assertEquals(getJWTToken.getResponse().getResMsg(), "Invalid Parameter request");
         Assert.assertTrue(getJWTToken.getResponse().getErrCode() == 6);
     }

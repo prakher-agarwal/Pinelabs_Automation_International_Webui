@@ -20,10 +20,7 @@ public class IrisGetParametersFromPineCloudTest extends TestUtilAPI {
 
     }
 
-    @BeforeClass
-    public void initialise() {
 
-    }
 
     @Test(description = "Validate the response when all the parameters are correct")
     public void getParamFromPineCloud_TC001() {

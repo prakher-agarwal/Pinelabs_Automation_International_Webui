@@ -7,6 +7,7 @@ import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -26,6 +27,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance = getCommonHelperPageInstance();
         paymentsUPIValidationInstance = getPaymentsUPIValidationInstance();
         upiAmazonPayInstance = UpiAmazonPay.getInstance(UpiAmazonPay.defaultrequest);
+        ExtentSparkReport.initialise();
     }
 
     @Test(description = "Verify the Amazon Pay Transaction sync mode.")

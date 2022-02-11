@@ -1,11 +1,13 @@
 package com.pinelabs.RnD.API.Base;
 
 
-import com.pinelabs.RnD.AndroidUI.Constants.EnumsRepo;
+import com.aventstack.extentreports.Status;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.pinelabs.RnD.AndroidUI.Constants.EnumsRepo;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.EncoderConfig;
@@ -36,6 +38,7 @@ public class BaseUtilsAPI {
         RestAssured.baseURI = baseURL;
         httpRequest = RestAssured.given().log().all();
         httpRequest.contentType(ContentType.JSON);
+
 
     }
 
@@ -71,8 +74,10 @@ public class BaseUtilsAPI {
     }
 
     public Response execute(String request, String endPoint, String baseURI) {
+        ExtentSparkReport.extentLogger.log(Status.INFO, "Request  is : " +request);
         Response response;
         String uri = setURI(baseURI, endPoint);
+        ExtentSparkReport.extentLogger.log(Status.INFO, "Base URI is : " +uri);
         requestSpecBuilder = getRequestBuilderInstance();
         encoderConfig = getEncoderConfigInstance();
         requestSpecBuilder.setBody(request);
@@ -81,32 +86,37 @@ public class BaseUtilsAPI {
         requestSpecBuilder.setContentType(ContentType.JSON);
         RequestSpecification specification = requestSpecBuilder.addFilter(new RequestLoggingFilter()).
                 addFilter(new ResponseLoggingFilter()).build();
+
         encoderConfig.appendDefaultContentCharsetToContentTypeIfUndefined(false);
         RestAssured.defaultParser = Parser.JSON;
         switch (methodName.toUpperCase()) {
             case "POST":
-                response = given().spec(specification).relaxedHTTPSValidation().when().post();
-                return response;
+                response = given().relaxedHTTPSValidation().when().post();
+                break;
             case "GET":
                 response = given().spec(specification).relaxedHTTPSValidation().when().get();
-                return response;
+                break;
             case "PUT":
                 response = given().spec(specification).relaxedHTTPSValidation().when().put();
-                return response;
+                break;
             case "PATCH":
                 response = given().spec(specification).relaxedHTTPSValidation().when().patch();
-                return response;
+                break;
             case "DELETE":
                 response = given().spec(specification).relaxedHTTPSValidation().when().delete();
-                return response;
+                break;
             default:
                 throw new NotFoundException("Please select proper api method");
 
         }
 
+        ExtentSparkReport.extentLogger.log(Status.INFO, "Response is : " + response.prettyPrint());
+        return response;
     }
 
     public Response execute(String request, String endPoint, String baseURI, String authTokenForHeader) {
+        System.out.println("Request is " + request);
+        ExtentSparkReport.extentLogger.log(Status.INFO, "Request is : " + request);
         Response response;
         String uri = setURI(baseURI, endPoint);
         requestSpecBuilder = getRequestBuilderInstance();
@@ -116,30 +126,33 @@ public class BaseUtilsAPI {
         requestSpecBuilder.setContentType(ContentType.JSON);
         RequestSpecification specification = requestSpecBuilder.addFilter(new RequestLoggingFilter()).
                 addFilter(new ResponseLoggingFilter()).build();
+        ExtentSparkReport.extentLogger.log(Status.INFO, "Specification is : " + specification);
 
         encoderConfig.appendDefaultContentCharsetToContentTypeIfUndefined(false);
         RestAssured.defaultParser = Parser.JSON;
         switch (methodName.toUpperCase()) {
             case "POST":
                 response = given().spec(specification).auth().oauth2(authTokenForHeader).relaxedHTTPSValidation().when().post();
-                return response;
+                break;
             case "GET":
                 response = given().spec(specification).relaxedHTTPSValidation().when().get();
-                return response;
+                break;
             case "PUT":
                 response = given().spec(specification).relaxedHTTPSValidation().when().put();
-                return response;
+                break;
             case "PATCH":
                 response = given().spec(specification).relaxedHTTPSValidation().when().patch();
-                return response;
+                break;
             case "DELETE":
                 response = given().spec(specification).relaxedHTTPSValidation().when().delete();
-                return response;
+                break;
             default:
                 throw new NotFoundException("Please select proper api method");
 
         }
 
+        ExtentSparkReport.extentLogger.log(Status.INFO, "Response is : " + response.prettyPrint());
+        return response;
     }
 
     public <T> T stringToJavaObject(String json, Class<T> className) {

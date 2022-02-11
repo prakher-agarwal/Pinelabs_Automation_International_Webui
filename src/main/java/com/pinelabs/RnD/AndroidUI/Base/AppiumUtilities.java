@@ -153,11 +153,11 @@ public class AppiumUtilities {
         String locatorValue = loc[1];
         switch (locatorType) {
             case "ID":
-                element = (List<WebElement>) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorValue)));
+                element =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(locatorValue)));
                 break;
             case "CLASSNAME":
             case "XPATH":
-                element = (List<WebElement>) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorValue)));
+                element =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locatorValue)));
                 break;
             case "ACCESSIBILITYID":
                 driver.findElementsByAccessibilityId(locatorValue);
@@ -169,7 +169,6 @@ public class AppiumUtilities {
                 throw new NoSuchElementException("Please check the locator");
         }
         return element;
-
     }
 
     public int getElementsSize(String locator) {
@@ -183,7 +182,6 @@ public class AppiumUtilities {
     }
 
     public void clickOnElement(String locator) {
-
         if (isElementDisplayed(locator)) {
             getElement(locator).click();
         } else
