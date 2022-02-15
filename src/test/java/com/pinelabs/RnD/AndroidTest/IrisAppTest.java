@@ -1,12 +1,11 @@
 package com.pinelabs.RnD.AndroidTest;
 
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.AndroidUI.POM.DeviceHomePage;
 import com.pinelabs.RnD.AndroidUI.POM.IrisApp.IrisHomePage;
 import com.pinelabs.RnD.AndroidUI.POM.IrisApp.IrisSettingsPage;
 import org.bson.Document;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.Map;
@@ -18,12 +17,12 @@ public class IrisAppTest extends TestUtils {
     IrisSettingsPage irisSettingsPage;
     Document dbValues;
 
-    @BeforeClass
+   // @BeforeClass
     public void initiation() {
         deviceHomePage = getDeviceHomePageInstance();
         irisSettingsPage = getIrisSettingsPageInstance();
         irisHomePage = getIrisHomePageInstance();
-        dbValues = CommonUtils.findRowBasedOnColumn("PL_IRIS_APP_BASIC_PARAMETERS_COLLECTIONS", "HARDWARE_ID", "0820686904");
+        dbValues = CommonUtility.findRowBasedOnColumn("PL_IRIS_APP_BASIC_PARAMETERS_COLLECTIONS", "HARDWARE_ID", "0820686904");
     }
 
     @Test(priority = 1)

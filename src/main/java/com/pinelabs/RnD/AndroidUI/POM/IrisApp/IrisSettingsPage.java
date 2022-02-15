@@ -1,7 +1,7 @@
 package com.pinelabs.RnD.AndroidUI.POM.IrisApp;
 
 import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 import org.openqa.selenium.NotFoundException;
 
@@ -14,8 +14,8 @@ public class IrisSettingsPage extends AppiumUtilities {
 
     private IrisSettingsPage() {
 
-        locatorProp = CommonUtils.readPropertyfile(FilePaths.irisSettingsPropertiesPath);
-        deviceProp = CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath);
+        locatorProp = CommonUtility.readPropertyfile(FilePaths.irisSettingsPropertiesPath);
+        deviceProp = CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath);
         values = new HashMap<>();
     }
 

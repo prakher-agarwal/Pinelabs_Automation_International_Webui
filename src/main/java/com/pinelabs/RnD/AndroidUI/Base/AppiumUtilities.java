@@ -7,7 +7,7 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -45,11 +45,11 @@ public class AppiumUtilities {
 
     private static DesiredCapabilities setCapabilities() {
         caps = new DesiredCapabilities();
-        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_VERSION"));
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("DEVICE_NAME"));
-        caps.setCapability(MobileCapabilityType.UDID, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("UDID"));
-        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("NEW_COMMAND_TIMEOUT"));
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_VERSION"));
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("DEVICE_NAME"));
+        caps.setCapability(MobileCapabilityType.UDID, CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("UDID"));
+        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("NEW_COMMAND_TIMEOUT"));
         //  caps.setCapability("–session-override", true);
         //caps.setCapability(MobileCapabilityType.APPLICATION_NAME, "Payments");
         //  caps.setCapability("fullReset", false);

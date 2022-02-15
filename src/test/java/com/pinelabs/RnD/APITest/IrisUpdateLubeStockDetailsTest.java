@@ -4,7 +4,7 @@ import com.pinelabs.RnD.API.Builders.GetJWTToken;
 import com.pinelabs.RnD.API.Builders.IrisUpdateLubeStockDetails;
 import com.pinelabs.RnD.API.Helpers.IrisAPIHelpers;
 import com.pinelabs.RnD.API.PojoFiles.GetJWTResponse;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import org.bson.Document;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ public class IrisUpdateLubeStockDetailsTest {
         irisUpdateLubeStockDetails.createAndExecute(getJWTResponse.getAccessToken().toString());
         Assert.assertEquals(irisUpdateLubeStockDetails.getResponse().getResMsg(), "Successfully updated the dry stock details in DB");
        // FindIterable<Document> a = CommonUtils.sortWithcolumnName("PL_IRIS_DRY_STOCK_SALE_COLLECTIONS", "LUBE_SALE_DATE_TIME");
-    Document d=    CommonUtils.findRowBasedOnColumn("PL_IRIS_DRY_STOCK_UPDATE_COLLECTIONS", "QUANTITY",89763);
+    Document d=    CommonUtility.findRowBasedOnColumn("PL_IRIS_DRY_STOCK_UPDATE_COLLECTIONS", "QUANTITY",89763);
         System.out.println("Fetched" +d.get("QUANTITY"));
        // Assert.assertTrue(8976d.get("QUANTITY"););
     }

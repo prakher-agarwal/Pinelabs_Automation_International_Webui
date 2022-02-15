@@ -1,7 +1,8 @@
 package com.pinelabs.RnD.AndroidUI.POM;
 
 import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.AndroidUI.Constants.SQLQueries;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 import org.testng.Assert;
 
@@ -14,9 +15,9 @@ public class DeviceHomePage extends AppiumUtilities {
     static Properties deviceHome;
 
     private DeviceHomePage() {
-        deviceHome = CommonUtils.readPropertyfile(FilePaths.deviceHomePropertiesPath);
-        commonLocatorProp = CommonUtils.readPropertyfile(FilePaths.commonLocPropertiesPath);
-        deviceProp = CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath);
+        deviceHome = CommonUtility.readPropertyfile(FilePaths.deviceHomePropertiesPath);
+        commonLocatorProp = CommonUtility.readPropertyfile(FilePaths.commonLocPropertiesPath);
+        deviceProp = CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath);
 
     }
 
@@ -63,6 +64,7 @@ public class DeviceHomePage extends AppiumUtilities {
         }
         else
             clickOnElement(deviceHome.getProperty("homeAppPayments"));
+
     }
 
     private boolean checkTransactionPopUP() {

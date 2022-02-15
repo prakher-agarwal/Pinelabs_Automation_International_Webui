@@ -1,7 +1,7 @@
 package com.pinelabs.RnD.AndroidUI.POM.IrisApp;
 
 import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 
 import java.util.HashMap;
@@ -15,8 +15,8 @@ public class IrisHomePage extends AppiumUtilities {
 
     private IrisHomePage() {
 
-        locatorProp = CommonUtils.readPropertyfile(FilePaths.irisHomePropertiesPath);
-        deviceProp = CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath);
+        locatorProp = CommonUtility.readPropertyfile(FilePaths.irisHomePropertiesPath);
+        deviceProp = CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath);
         values = new HashMap<>();
     }
 

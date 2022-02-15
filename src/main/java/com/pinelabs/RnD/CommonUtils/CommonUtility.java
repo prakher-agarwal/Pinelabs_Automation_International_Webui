@@ -14,7 +14,7 @@ import java.util.Random;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Sorts.ascending;
 
-public class CommonUtils {
+public class CommonUtility {
     static MongoCollection<Document> tableName;
     static MongoDatabase database;
     static MongoClient client;
@@ -64,7 +64,7 @@ public class CommonUtils {
 
     public static MongoDatabase dbValidation() {
 
-        client = MongoClients.create(CommonUtils.readPropertyfile(FilePaths.dbPropertiesPath).getProperty("mongoDbconnectionURL"));
+        client = MongoClients.create(CommonUtility.readPropertyfile(FilePaths.dbPropertiesPath).getProperty("mongoDbconnectionURL"));
         MongoIterable<String> dbname = client.listDatabaseNames();
         for (String db : dbname) {
             if (db.equals("admin")) {
@@ -95,6 +95,8 @@ public class CommonUtils {
         tableName = findCollectionFromDb(collectionName);
         return tableName.find(eq("HARDWARE_ID", hardwareId)).first();
     }
+
+
 
     public static void closeConnection() {
         client.close();

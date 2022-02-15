@@ -20,7 +20,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ExtentSparkReport {
+public class ExtentSparkReportUtility {
     public static ExtentReports extent;
     public static ExtentSparkReporter spark;
     public static ExtentTest test, extentLogger;
@@ -37,8 +37,8 @@ public class ExtentSparkReport {
         spark.config().setTheme(Theme.STANDARD);
         spark.config().setDocumentTitle("ParagonAutomation_OneOfAKind");
         spark.config().setReportName("AutomationReport_" +
-                CommonUtils.readPropertyfile(FilePaths.extentReportProperties).getProperty("ProjectName") + "_" +
-                CommonUtils.readPropertyfile(FilePaths.extentReportProperties).getProperty("TeamName"));
+                CommonUtility.readPropertyfile(FilePaths.extentReportProperties).getProperty("ProjectName") + "_" +
+                CommonUtility.readPropertyfile(FilePaths.extentReportProperties).getProperty("TeamName"));
         spark.config().setOfflineMode(true);
         extent.attachReporter(spark);
         setSystemInfo();
@@ -47,11 +47,11 @@ public class ExtentSparkReport {
     public static void setSystemInfo() {
         try {
             extent.setSystemInfo("SYSTEM NAME", InetAddress.getLocalHost().getHostName());
-            extent.setSystemInfo("PLATFORM NAME", CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
-            extent.setSystemInfo("PLATFORM VERSION", CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_VERSION"));
-            extent.setSystemInfo("DEVICE NAME", CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("DEVICE_NAME"));
-            extent.setSystemInfo("UDID", CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("UDID"));
-            extent.setSystemInfo("DEVICE ENVIRONMENT", CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("Environment"));
+            extent.setSystemInfo("PLATFORM NAME", CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_NAME"));
+            extent.setSystemInfo("PLATFORM VERSION", CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("PLATFORM_VERSION"));
+            extent.setSystemInfo("DEVICE NAME", CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("DEVICE_NAME"));
+            extent.setSystemInfo("UDID", CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("UDID"));
+            extent.setSystemInfo("DEVICE ENVIRONMENT", CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath).getProperty("Environment"));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -69,6 +69,9 @@ public class ExtentSparkReport {
             extentLogger.fail("PFB screenshot of failed case :  " + "",
                     MediaEntityBuilder.createScreenCaptureFromPath(screenPath).build());
         }
+        else if (result.getStatus()== ITestResult.SUCCESS)
+            extentLogger.pass("Method : " + result.getMethod().getMethodName() + " is Pass");
+
         extent.flush();
 
     }
@@ -80,17 +83,15 @@ public class ExtentSparkReport {
 
             extentLogger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
         }
+        else if (result.getStatus()== ITestResult.SUCCESS)
+            extentLogger.pass("Method : " + result.getMethod().getMethodName() + " is Pass");
         extent.flush();
 
     }
-
-
 
     public static String generateDynamicName() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy h-m-s-ms");
         Date date = new Date();
         return dateFormat.format(date);
     }
-
-
 }

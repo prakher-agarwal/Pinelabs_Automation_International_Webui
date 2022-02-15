@@ -1,14 +1,6 @@
 package com.pinelabs.RnD.AndroidUI.Constants;
 
-public class EnumsRepo {
-
-    public enum methodName {
-        POST,
-        GET,
-        PUT,
-        DELETE,
-        PATCH
-    }
+public class SQLQueries {
 
     public enum Unit {
         HORIZONTAL("HORIZONTAL"),
@@ -18,6 +10,8 @@ public class EnumsRepo {
         Unit(String unit) {
             this.unit = unit;
         }
+
+
         String getValues(){
             return unit;
         }
@@ -25,4 +19,7 @@ public class EnumsRepo {
 
 
     }
+
+    public static final String sqlQuery1= "select Top 1 with ties * from" +Unit.VERTICAL+ "TRM_TRANSACTION_DATA_TBL where CLIENT_NUMBER = 294264 order by ROW_INSERTION_DATE_TIME desc";
+
 }

@@ -2,13 +2,11 @@ package com.pinelabs.RnD.APITest;
 
 import com.pinelabs.RnD.API.Builders.GetJWTToken;
 import com.pinelabs.RnD.AndroidTest.TestUtils;
-import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-import java.io.StringWriter;
 
 public class GetJWTTest extends TestUtils {
     GetJWTToken getJWTToken;
@@ -20,7 +18,7 @@ public class GetJWTTest extends TestUtils {
     }
     @BeforeSuite
     public void launch() {
-        ExtentSparkReport.initialise();
+        ExtentSparkReportUtility.initialise();
     }
     @Test(description = "Validate the response when all the parameters are correct")
     public void getJWTToke_TC001() {

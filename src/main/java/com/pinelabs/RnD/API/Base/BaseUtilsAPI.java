@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.pinelabs.RnD.AndroidUI.Constants.EnumsRepo;
-import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.EncoderConfig;
@@ -38,7 +38,6 @@ public class BaseUtilsAPI {
         RestAssured.baseURI = baseURL;
         httpRequest = RestAssured.given().log().all();
         httpRequest.contentType(ContentType.JSON);
-
 
     }
 
@@ -74,10 +73,10 @@ public class BaseUtilsAPI {
     }
 
     public Response execute(String request, String endPoint, String baseURI) {
-        ExtentSparkReport.extentLogger.log(Status.INFO, "Request  is : " +request);
+        ExtentSparkReportUtility.extentLogger.log(Status.INFO, "Request  is : " +request);
         Response response;
         String uri = setURI(baseURI, endPoint);
-        ExtentSparkReport.extentLogger.log(Status.INFO, "Base URI is : " +uri);
+        ExtentSparkReportUtility.extentLogger.log(Status.INFO, "Base URI is : " +uri);
         requestSpecBuilder = getRequestBuilderInstance();
         encoderConfig = getEncoderConfigInstance();
         requestSpecBuilder.setBody(request);
@@ -110,13 +109,13 @@ public class BaseUtilsAPI {
 
         }
 
-        ExtentSparkReport.extentLogger.log(Status.INFO, "Response is : " + response.prettyPrint());
+        ExtentSparkReportUtility.extentLogger.log(Status.INFO, "Response is : " + response.prettyPrint());
         return response;
     }
 
     public Response execute(String request, String endPoint, String baseURI, String authTokenForHeader) {
         System.out.println("Request is " + request);
-        ExtentSparkReport.extentLogger.log(Status.INFO, "Request is : " + request);
+        ExtentSparkReportUtility.extentLogger.log(Status.INFO, "Request is : " + request);
         Response response;
         String uri = setURI(baseURI, endPoint);
         requestSpecBuilder = getRequestBuilderInstance();
@@ -126,7 +125,7 @@ public class BaseUtilsAPI {
         requestSpecBuilder.setContentType(ContentType.JSON);
         RequestSpecification specification = requestSpecBuilder.addFilter(new RequestLoggingFilter()).
                 addFilter(new ResponseLoggingFilter()).build();
-        ExtentSparkReport.extentLogger.log(Status.INFO, "Specification is : " + specification);
+        ExtentSparkReportUtility.extentLogger.log(Status.INFO, "Specification is : " + specification);
 
         encoderConfig.appendDefaultContentCharsetToContentTypeIfUndefined(false);
         RestAssured.defaultParser = Parser.JSON;
@@ -151,7 +150,7 @@ public class BaseUtilsAPI {
 
         }
 
-        ExtentSparkReport.extentLogger.log(Status.INFO, "Response is : " + response.prettyPrint());
+        ExtentSparkReportUtility.extentLogger.log(Status.INFO, "Response is : " + response.prettyPrint());
         return response;
     }
 

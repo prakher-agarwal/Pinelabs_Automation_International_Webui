@@ -1,7 +1,7 @@
 package com.pinelabs.RnD.AndroidUI.POM.PaymentsApp;
 
 import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 
 import java.util.Properties;
@@ -14,8 +14,8 @@ public class PaymentsAmazonPayValidationsPage extends AppiumUtilities {
 
     private PaymentsAmazonPayValidationsPage() {
 
-        commonLocatorsProperties = CommonUtils.readPropertyfile(FilePaths.commonLocPropertiesPath);
-        paymentsAmazonPayProperties = CommonUtils.readPropertyfile(FilePaths.amazonPayPropertiesPath);
+        commonLocatorsProperties = CommonUtility.readPropertyfile(FilePaths.commonLocPropertiesPath);
+        paymentsAmazonPayProperties = CommonUtility.readPropertyfile(FilePaths.amazonPayPropertiesPath);
 
     }
 

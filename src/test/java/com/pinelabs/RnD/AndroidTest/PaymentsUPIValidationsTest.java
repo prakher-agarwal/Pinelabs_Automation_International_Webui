@@ -6,10 +6,8 @@ import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
 import com.pinelabs.RnD.AndroidUI.POM.DeviceHomePage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
-import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import org.testng.annotations.Test;
 
 import java.sql.Connection;
@@ -26,7 +24,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     CommonHelperPage commonHelperPageInstance;
     Map<String, String> value = new HashMap<>();
 
-    @BeforeClass
+    // @BeforeClass
     public void getInstances() {
         AppiumUtilities.setUpConnection();
         paymentsUPIValidationInstance = getPaymentsUPIValidationInstance();
@@ -35,9 +33,10 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         upiCallbackIciciInstance = UpiCallbackIcici.getInstance(UpiCallbackIcici.defaultrequest);
 
     }
-    @BeforeSuite
-    public void m1(){
-        ExtentSparkReport.initialise();
+
+    //   @BeforeSuite
+    public void m1() {
+        ExtentSparkReportUtility.initialise();
     }
 
     @Test(description = "Validate the E2E UPI transaction through Payments App", groups = "SMOKE")
@@ -55,7 +54,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         extentLogger.pass("Selected UPI Sale Request");
         commonHelperPageInstance.enterAmount("1");
         extentLogger.pass("Entered Amount Rs 1");
-        int num = CommonUtils.generateRandonNumber(6);
+        int num = CommonUtility.generateRandonNumber(6);
         commonHelperPageInstance.enterInvoiceNumber(num);
         extentLogger.pass("Entered invoice number " + num);
         commonHelperPageInstance.selectUPIpaymode("ICICI");
@@ -79,7 +78,6 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         //Assert.assertEquals(d, "UPI SALE COMPLETE");
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErroCode(), "00");
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErrorMsg(), "Success");
-
     }
 
 
@@ -95,7 +93,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         commonHelperPageInstance.clickBrowseOtherOptions();
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         commonHelperPageInstance.getLastTransaction();
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtility.generateRandonNumber(5));
         System.out.println("CLIENT Id is " + commonHelperPageInstance.validateValuesFromChargeslip("CLIENT ID"));
         System.out.println("MID is " + commonHelperPageInstance.validateValuesFromChargeslip("MID"));
         System.out.println("Batch Id is " + commonHelperPageInstance.validateValuesFromChargeslip("BATCH ID"));
@@ -161,7 +159,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         commonHelperPageInstance.selectReprint();
         commonHelperPageInstance.getLastTransaction();
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtility.generateRandonNumber(5));
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
@@ -283,7 +281,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         commonHelperPageInstance.selectReprint();
         commonHelperPageInstance.getLastTransaction();
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtility.generateRandonNumber(5));
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
@@ -304,12 +302,12 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.searchPaymentMode("UPI");
         commonHelperPageInstance.selectReprint();
         commonHelperPageInstance.getLastTransaction();
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtility.generateRandonNumber(5));
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
 
-    //  @Test
+   // @Test
     public void sqlDbConnection() {
 
         try {
@@ -326,4 +324,9 @@ public class PaymentsUPIValidationsTest extends TestUtils {
             System.out.println("ERROR occured when connecting to SQL");
         }
     }
+
+
+
+
+
 }

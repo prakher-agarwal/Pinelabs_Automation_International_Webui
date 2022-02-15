@@ -3,7 +3,7 @@ package com.pinelabs.RnD.APITest;
 import com.pinelabs.RnD.API.Builders.GetJWTToken;
 import com.pinelabs.RnD.API.Builders.IrisGetParametersFromPineCloud;
 import com.pinelabs.RnD.API.Builders.UpiCallbackIcici;
-import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -13,13 +13,13 @@ import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 
-public class TestUtilAPI extends ExtentSparkReport {
+public class TestUtilAPI extends ExtentSparkReportUtility {
     public static IrisGetParametersFromPineCloud getIrisGetParametersFromPineCloud;
     public static GetJWTToken getJwtTokenInstance;
 
     @BeforeSuite
     public void launch() {
-        ExtentSparkReport.initialise();
+        ExtentSparkReportUtility.initialise();
     }
 
     @BeforeMethod
@@ -31,7 +31,7 @@ public class TestUtilAPI extends ExtentSparkReport {
     @AfterMethod
     public void getResult(ITestResult result) {
         System.out.println("In after Method");
-        ExtentSparkReport.generateReportAPI(result);
+        ExtentSparkReportUtility.generateReportAPI(result);
 
 }
 

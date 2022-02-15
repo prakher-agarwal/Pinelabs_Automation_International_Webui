@@ -6,3 +6,5 @@ ParagonAutomationFramework.ipr
 ParagonAutomationFramework.iws
 target/
 extentReportsOutput/
+/src/test/java/com/pinelabs/RnD/AndroidTest/Dummy.java
+

@@ -15,7 +15,7 @@
 //import org.tsystems.testfactory.constants.FilePaths;
 //
 ///**
-// * ExcelFileReader.java- This class reads the excel file by fetching the
+// * ExcelReadWriteUtility.java- This class reads the excel file by fetching the
 // * excelFileName provided by user in config.properties
 // *
 // * @methods -getExcelSheetPath(), getExcelFile(),getExcelSheetName(),

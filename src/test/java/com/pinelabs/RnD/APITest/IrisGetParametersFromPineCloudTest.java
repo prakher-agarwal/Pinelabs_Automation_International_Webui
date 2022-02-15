@@ -2,12 +2,11 @@ package com.pinelabs.RnD.APITest;
 
 import com.pinelabs.RnD.API.Builders.GetJWTToken;
 import com.pinelabs.RnD.API.Builders.IrisGetParametersFromPineCloud;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.API.Helpers.IrisAPIHelpers;
 import com.pinelabs.RnD.API.PojoFiles.GetJWTResponse;
 import org.bson.Document;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class IrisGetParametersFromPineCloudTest extends TestUtilAPI {
@@ -16,7 +15,7 @@ public class IrisGetParametersFromPineCloudTest extends TestUtilAPI {
     Document dbValues;
 
     public void db() {
-        Document dbValues = CommonUtils.findRowBasedOnColumn("PL_IRIS_APP_BASIC_PARAMETERS_COLLECTIONS", "HARDWARE_ID", "0820686904");
+        Document dbValues = CommonUtility.findRowBasedOnColumn("PL_IRIS_APP_BASIC_PARAMETERS_COLLECTIONS", "HARDWARE_ID", "0820686904");
 
     }
 

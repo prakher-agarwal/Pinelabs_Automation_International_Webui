@@ -6,9 +6,8 @@ import com.pinelabs.RnD.AndroidUI.POM.DeviceHomePage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsAmazonPayValidationsPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
-import com.pinelabs.RnD.CommonUtils.ExtentSparkReport;
-import org.testng.annotations.BeforeClass;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
+import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import org.testng.annotations.Test;
 
 public class PaymentsAmazonPayValidationsTest extends TestUtils {
@@ -19,7 +18,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
     PaymentsUPIValidationsPage paymentsUPIValidationInstance;
     String qrValues;
 
-    @BeforeClass
+    //@BeforeClass
     public void getInstances() {
         AppiumUtilities.setUpConnection();
         paymentsAmazonPayInstance = getPaymentsAmazonPayValidationsPage();
@@ -27,7 +26,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         commonHelperPageInstance = getCommonHelperPageInstance();
         paymentsUPIValidationInstance = getPaymentsUPIValidationInstance();
         upiAmazonPayInstance = UpiAmazonPay.getInstance(UpiAmazonPay.defaultrequest);
-        ExtentSparkReport.initialise();
+        ExtentSparkReportUtility.initialise();
     }
 
     @Test(description = "Verify the Amazon Pay Transaction sync mode.")
@@ -147,7 +146,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
         commonHelperPageInstance.selectReprint();
         commonHelperPageInstance.getLastTransaction();
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtility.generateRandonNumber(5));
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 
@@ -168,7 +167,7 @@ public class PaymentsAmazonPayValidationsTest extends TestUtils {
         paymentsUPIValidationInstance.searchPaymentMode("Amazon Pay");
         commonHelperPageInstance.selectReprint();
         commonHelperPageInstance.getLastTransaction();
-        commonHelperPageInstance.enterInvoiceNumber(CommonUtils.generateRandonNumber(5));
+        commonHelperPageInstance.enterInvoiceNumber(CommonUtility.generateRandonNumber(5));
         commonHelperPageInstance.clickProceedOnReceipt();
     }
 

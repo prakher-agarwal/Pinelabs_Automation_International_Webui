@@ -1,7 +1,7 @@
 package com.pinelabs.RnD.AndroidUI.POM.PaymentsApp;
 
 import com.pinelabs.RnD.AndroidUI.Base.AppiumUtilities;
-import com.pinelabs.RnD.CommonUtils.CommonUtils;
+import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 
 import java.util.HashMap;
@@ -18,9 +18,9 @@ public class PaymentsUPIValidationsPage extends AppiumUtilities {
 
     private PaymentsUPIValidationsPage() {
 
-        deviceHome = CommonUtils.readPropertyfile(FilePaths.devicePropertiesPath);
-        commonLocatorsProperties = CommonUtils.readPropertyfile(FilePaths.commonLocPropertiesPath);
-        paymentsUPIProperties = CommonUtils.readPropertyfile(FilePaths.upiPayPropertiesPath);
+        deviceHome = CommonUtility.readPropertyfile(FilePaths.devicePropertiesPath);
+        commonLocatorsProperties = CommonUtility.readPropertyfile(FilePaths.commonLocPropertiesPath);
+        paymentsUPIProperties = CommonUtility.readPropertyfile(FilePaths.upiPayPropertiesPath);
     }
 
     public static PaymentsUPIValidationsPage getInstance() {
