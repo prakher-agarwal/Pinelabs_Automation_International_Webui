@@ -56,10 +56,12 @@ public class ExtentSparkReportUtility {
             e.printStackTrace();
         }
     }
+
     public void setMethod(Method m, Test result) {
         test = extent.createTest(getClass().getSimpleName() + " : " + m.getName() + "()");
         extentLogger = test.createNode(result.description());
     }
+
     public static void generateReport(ITestResult result) {
         if (result.getStatus() == ITestResult.SKIP) {
             extentLogger.log(Status.SKIP, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.YELLOW));
@@ -68,22 +70,21 @@ public class ExtentSparkReportUtility {
             extentLogger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
             extentLogger.fail("PFB screenshot of failed case :  " + "",
                     MediaEntityBuilder.createScreenCaptureFromPath(screenPath).build());
-        }
-        else if (result.getStatus()== ITestResult.SUCCESS)
+        } else if (result.getStatus() == ITestResult.SUCCESS)
             extentLogger.pass("Method : " + result.getMethod().getMethodName() + " is Pass");
 
         extent.flush();
 
     }
+
     public static void generateReportAPI(ITestResult result) {
 
         if (result.getStatus() == ITestResult.SKIP) {
             extentLogger.log(Status.SKIP, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.YELLOW));
         } else if (result.getStatus() == ITestResult.FAILURE) {
 
-            extentLogger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
-        }
-        else if (result.getStatus()== ITestResult.SUCCESS)
+            extentLogger.log(Status.FAIL, result.getThrowable().getMessage());
+        } else if (result.getStatus() == ITestResult.SUCCESS)
             extentLogger.pass("Method : " + result.getMethod().getMethodName() + " is Pass");
         extent.flush();
 

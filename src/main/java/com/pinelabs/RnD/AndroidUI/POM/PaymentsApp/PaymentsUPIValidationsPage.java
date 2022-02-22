@@ -52,6 +52,6 @@ public class PaymentsUPIValidationsPage extends AppiumUtilities {
     }
 
     public void closePaymentsApp(){
-        closeApp("com.pinelabs.plutusplus");
+        checkAppStatusInDeviceConsole("com.pinelabs.plutusplus");
     }
 }

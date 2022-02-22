@@ -8,6 +8,8 @@ import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.sql.Connection;
@@ -22,9 +24,9 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     DeviceHomePage deviceHomePageInstance;
     UpiCallbackIcici upiCallbackIciciInstance;
     CommonHelperPage commonHelperPageInstance;
-    Map<String, String> value = new HashMap<>();
+    Map<Object, Object> value = new HashMap<>();
 
-    // @BeforeClass
+     @BeforeClass
     public void getInstances() {
         AppiumUtilities.setUpConnection();
         paymentsUPIValidationInstance = getPaymentsUPIValidationInstance();
@@ -34,7 +36,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
 
     }
 
-    //   @BeforeSuite
+       @BeforeSuite
     public void m1() {
         ExtentSparkReportUtility.initialise();
     }
@@ -78,6 +80,8 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         //Assert.assertEquals(d, "UPI SALE COMPLETE");
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErroCode(), "00");
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErrorMsg(), "Success");
+
+
     }
 
 
@@ -86,7 +90,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
 
     }
 
-    @Test(description = "Verify the ICICI UPI \"GetStatus- Last\" Transaction.")
+    @Test(description = "Verify the ICICI UPI \"GetStatus- Last\" Transaction.", groups = "Regression")
     public void iCICI_UPI_003() {
         deviceHomePageInstance.openPaymentsApp();
         commonHelperPageInstance.clickOnFingerIcon();
@@ -307,7 +311,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     }
 
 
-   // @Test
+    // @Test
     public void sqlDbConnection() {
 
         try {
@@ -324,9 +328,6 @@ public class PaymentsUPIValidationsTest extends TestUtils {
             System.out.println("ERROR occured when connecting to SQL");
         }
     }
-
-
-
 
 
 }

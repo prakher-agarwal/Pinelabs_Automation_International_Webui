@@ -9,20 +9,4 @@ public class EnumsRepo {
         DELETE,
         PATCH
     }
-
-    public enum Unit {
-        HORIZONTAL("HORIZONTAL"),
-        VERTICAL("VERTICAL");
-        private String unit;
-
-        Unit(String unit) {
-            this.unit = unit;
-        }
-        String getValues(){
-            return unit;
-        }
-
-
-
-    }
 }

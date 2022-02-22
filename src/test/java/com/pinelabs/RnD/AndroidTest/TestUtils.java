@@ -9,6 +9,9 @@ import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
@@ -23,7 +26,7 @@ public class TestUtils extends ExtentSparkReportUtility {
 
     public static PaymentsUPIValidationsPage paymentsHomePageInstance;
 
-   // @BeforeSuite
+    @BeforeSuite
     public void getInstances() {
         // BaseUtilsUI.setUpConnection();
         //ExtentSparkReport.initialise();
@@ -31,12 +34,12 @@ public class TestUtils extends ExtentSparkReportUtility {
         getIrisSettingsPage = getIrisSettingsPageInstance();
         getDeviceHomePageInstance = getDeviceHomePageInstance();
     }
-   // @BeforeMethod
+    @BeforeMethod
     public void setmethodAndCurrentClass(Method method, ITestContext result) {
         Test test = method.getAnnotation(Test.class);
         setMethod(method, test);
     }
-  //  @AfterMethod
+   @AfterMethod
     public void getResult(ITestResult result) {
         System.out.println("In after Method");
         ExtentSparkReportUtility.generateReport(result);

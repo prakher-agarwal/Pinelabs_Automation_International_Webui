@@ -9,6 +9,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.pinelabs.RnD.AndroidUI.Constants.FilePaths;
 import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -153,11 +154,11 @@ public class AppiumUtilities {
         String locatorValue = loc[1];
         switch (locatorType) {
             case "ID":
-                element =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(locatorValue)));
+                element = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(locatorValue)));
                 break;
             case "CLASSNAME":
             case "XPATH":
-                element =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locatorValue)));
+                element = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locatorValue)));
                 break;
             case "ACCESSIBILITYID":
                 driver.findElementsByAccessibilityId(locatorValue);
@@ -289,6 +290,7 @@ public class AppiumUtilities {
 
         return qrCodeImage;
     }
+
     public String decodeQr(String locator) {
         MobileElement qrCodeElement = getElement(locator);
         File screenshot = driver.getScreenshotAs(OutputType.FILE);
@@ -301,6 +303,7 @@ public class AppiumUtilities {
         System.out.println("content = " + content);
         return content;
     }
+
     private static String decodeQRCode(BufferedImage qrCodeImage) throws NotFoundException {
         Result result = null;
         LuminanceSource source = new BufferedImageLuminanceSource(qrCodeImage);
@@ -341,9 +344,51 @@ public class AppiumUtilities {
         return path;
     }
 
-    public void closeApp(String appPackageName) {
-        driver.terminateApp(appPackageName);
+    /**
+     * The scrollToAnElementByText function scrolls down on the current screen page until the given String(text) is visible on the screen.
+     * Note that this will loop infinitely unless the given text is available or another funtion is called to break the loop.
+     *
+     * @param text
+     * @return WebElement
+     * @author ajay.paralkar
+     */
+    public WebElement scrollToAnElementByText(String text) {
+        return driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
+                ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
     }
+
+
+    /**
+     * The toggleWifiStatus function is like an ON/OFF toggle switch for WIFI.
+     * If WIFI connection is already OFF it will switch it ON and vice versa.
+     *
+     * @author ajay.paralkar
+     */
+    public void toggleWifiStatus() {
+        ((AndroidDriver<MobileElement>) driver).toggleWifi();
+    }
+
+    /**
+     * Takes input as app package name and checks if app is open in backgroud. If yes it terminate the app
+     * or else return true
+     * @param appPackageName
+     * @return
+     */
+
+    public boolean checkAppStatusInDeviceConsole(String appPackageName) {
+
+        if (driver.getPageSource().contains(appPackageName)) {
+            driver.terminateApp(appPackageName);
+            return false;}
+        else return true;
+
+    }
+
+    /**
+     * Closes all the driver instances
+     *
+     * @author ajay.paralkar
+     */
 
     public void tearDown() {
         driver.quit();
