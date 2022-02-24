@@ -90,7 +90,7 @@ public class BaseUtilsAPI {
         RestAssured.defaultParser = Parser.JSON;
         switch (methodName.toUpperCase()) {
             case "POST":
-                response = given().relaxedHTTPSValidation().when().post();
+                response = given().spec(specification).relaxedHTTPSValidation().when().post();
                 break;
             case "GET":
                 response = given().spec(specification).relaxedHTTPSValidation().when().get();

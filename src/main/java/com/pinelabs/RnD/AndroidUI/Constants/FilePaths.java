@@ -16,4 +16,5 @@ public class FilePaths {
     public static final String extenthtmlReportPath = System.getProperty("user.dir") + File.separator + "extentReportsOutput" + File.separator + "htmlReports" + File.separator;
     public static final String extentReportProperties = resourceFolderPath + "CommonProperties" + File.separator + "ExtentReports.properties";
     public static final String screenshotsPath = System.getProperty("user.dir") + File.separator + "extentReportsOutput" + File.separator + "screenshots" + File.separator;
+    public static final String jsonFilePath = resourceFolderPath + File.separator + "TestData" + File.separator + "JSONData.json";
 }
