@@ -1,13 +1,38 @@
 package com.pinelabs.RnD.CommonUtils;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.*;
 import java.util.Iterator;
 
 public class JSONUtility {
 
-    public static String getJsonValue(String jsonReq, String key) {
+    public static String getValueFromJson(String filePath, String key) {
+        String jsonTxt = null;
+        File f = new File(filePath);
+        if (f.exists()) {
+            InputStream is = null;
+            try {
+                is = new FileInputStream(filePath);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                jsonTxt = IOUtils.toString(is, "UTF-8");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+          //  System.out.println(jsonTxt);
+        }
+        fetchJSONValueFromKey(jsonTxt,key);
+        return jsonTxt;
+    }
+
+
+    private static String fetchJSONValueFromKey(String jsonReq, String key) {
 
         JSONObject json = new JSONObject(jsonReq);
         boolean exists = json.has(key);
@@ -20,14 +45,14 @@ public class JSONUtility {
                 nextKeys = (String) keys.next();
                 try {
                     if (json.get(nextKeys) instanceof JSONObject) {
-                        return getJsonValue(json.getJSONObject(nextKeys).toString(), key);
+                        return fetchJSONValueFromKey(json.getJSONObject(nextKeys).toString(), key);
                     } else if (json.get(nextKeys) instanceof JSONArray) {
                         JSONArray jsonArray = json.getJSONArray(nextKeys);
                         int i = 0;
                         if (i < jsonArray.length()) do {
                             String jsonArrayString = jsonArray.get(i).toString();
-                            JSONObject innerJson = new JSONObject(jsonArrayString);
-                            return getJsonValue(innerJson.toString(), key);
+                            json = new JSONObject(jsonArrayString);
+                            return fetchJSONValueFromKey(json.toString(), key);
                         } while (i < jsonArray.length());
                     }
                 } catch (Exception e) {
@@ -37,6 +62,7 @@ public class JSONUtility {
         } else {
             val = json.get(key).toString();
         }
+        System.out.println("Value is " + val);
         return val;
     }
 }

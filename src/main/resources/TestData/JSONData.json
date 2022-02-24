@@ -1,16 +1,13 @@
 {
-  "firstName": "John",
-  "lastName": "Kennedy",
+  "firstName": "Vanshika",
+  "lastName": "Chauhan",
   "address": [
     {
       "street": "abc",
-      "city": "Hyderabad",
-      "state": "TL"
-    },
-    {
-      "street": "xyz",
-      "city": "Chennai",
-      "state": "TN"
+      "city": "Delhi",
+      "state": "New Delhi"
     }
-  ]
+
+  ],
+  "name" : "Singh"
 }

@@ -17,4 +17,7 @@ public class FilePaths {
     public static final String extentReportProperties = resourceFolderPath + "CommonProperties" + File.separator + "ExtentReports.properties";
     public static final String screenshotsPath = System.getProperty("user.dir") + File.separator + "extentReportsOutput" + File.separator + "screenshots" + File.separator;
     public static final String jsonFilePath = resourceFolderPath + File.separator + "TestData" + File.separator + "JSONData.json";
+    public static final String excelDataProperties = resourceFolderPath + "CommonProperties" + File.separator + "ExcelSheet.properties";
+    public static final String excelDataFile = "D:\\Projects\\ParagonAutomationFramework\\ParagonAutomationFramework\\src\\main\\resources\\TestData";
+
 }

@@ -7,15 +7,14 @@ import com.pinelabs.RnD.AndroidUI.POM.DeviceHomePage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.CommonHelperPage;
 import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.CommonUtility;
+import com.pinelabs.RnD.CommonUtils.ExcelUtility;
 import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +25,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     CommonHelperPage commonHelperPageInstance;
     Map<Object, Object> value = new HashMap<>();
 
-     @BeforeClass
+   //  @BeforeClass
     public void getInstances() {
         AppiumUtilities.setUpConnection();
         paymentsUPIValidationInstance = getPaymentsUPIValidationInstance();
@@ -35,14 +34,25 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         upiCallbackIciciInstance = UpiCallbackIcici.getInstance(UpiCallbackIcici.defaultrequest);
 
     }
+    @DataProvider(name = "NewData")
+    public Object[][] checkExcelUtil(){
 
-       @BeforeSuite
+        Object[][] values=   ExcelUtility.excelFileReading();
+        return values;
+    }
+    @Test(dataProvider = "NewData")
+    public void m2(){
+         ExcelUtility.excelFileReading();
+    }
+
+      // @BeforeSuite
     public void m1() {
         ExtentSparkReportUtility.initialise();
     }
 
     @Test(description = "Validate the E2E UPI transaction through Payments App", groups = "SMOKE")
     public void iCICI_UPI_001() {
+
         extentLogger.assignAuthor("Vanshika").assignCategory("Regression").assignDevice("Google Chrome");
         deviceHomePageInstance.openPaymentsApp();
         extentLogger.log(Status.PASS, "Opened Payments App");
