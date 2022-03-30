@@ -371,6 +371,7 @@ public class AppiumUtilities {
     /**
      * Takes input as app package name and checks if app is open in backgroud. If yes it terminate the app
      * or else return true
+     *
      * @param appPackageName
      * @return
      */
@@ -379,8 +380,8 @@ public class AppiumUtilities {
 
         if (driver.getPageSource().contains(appPackageName)) {
             driver.terminateApp(appPackageName);
-            return false;}
-        else return true;
+            return false;
+        } else return true;
 
     }
 
@@ -393,4 +394,82 @@ public class AppiumUtilities {
     public void tearDown() {
         driver.quit();
     }
+
+
+    public void scrollUntilTextVisible(String elementTextDisplayedOnUI) {
+        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
+                ".scrollIntoView(new UiSelector().textContains(\"" + elementTextDisplayedOnUI + "\"));"));
+    }
+
+    public static boolean checkIfAppOpen() {
+        boolean a = driver.getPageSource().contains("com.pinelabs.plutusplus");
+        return a;
+    }
+
+    public MobileElement getElementWithoutWait(String locator) {
+        MobileElement element = null;
+        String[] loc = getLocatorTypeAndValue(locator);
+        String locatorType = loc[0].substring(1).toUpperCase();
+        String locatorValue = loc[1];
+        switch (locatorType) {
+            case "ID":
+                element = driver.findElement(By.id(locatorValue));
+                break;
+            case "CLASSNAME":
+                element = driver.findElement(By.className(locatorValue));
+                break;
+            case "XPATH":
+                element = driver.findElement(By.xpath(locatorValue));
+                break;
+            default:
+                throw new NoSuchElementException("Please check the locator");
+        }
+        return element;
+    }
+
+    public boolean isElementDisplayed_NoWait(String locator) {
+        try {
+            if (getElementWithoutWait(locator).isDisplayed()) {
+                return true;
+            }
+        } catch (Exception nse) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void pressHomeBtn() {
+        driver.getKeyboard().pressKey(Keys.HOME);
+    }
+
+    public static boolean checkIfAppOpen(String appName) {
+        boolean a = false;
+        if (appName.equalsIgnoreCase("Payments")) {
+            a = driver.getPageSource().contains("com.pinelabs.plutusplus");
+        } else if (appName.equalsIgnoreCase("Home")) {
+            a = driver.getPageSource().contains("com.pinelabs.masterapp");
+        }
+        return a;
+    }
+
+    public void scrollDown(double startScrollScreenPercentage, double endScrollScreenPercentage) {
+        Dimension dimension = driver.manage().window().getSize();
+        int start_x = (int) (dimension.getWidth() * 0.5);
+        int start_y = (int) (dimension.getHeight() * startScrollScreenPercentage);
+        int end_x = (int) (dimension.getWidth() * 0.5);
+        int end_y = (int) (dimension.getHeight() * endScrollScreenPercentage);
+        TouchAction action = new TouchAction(driver);
+        action.press(PointOption.point(start_x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+                .moveTo(PointOption.point(end_x, end_y)).release().perform();
+    }
+
+    public boolean checkIfEndOfPageAfterScroll() {
+        boolean endOfPage = false;
+        String previousPageSource = driver.getPageSource();
+        scrollDown(0.75, 0.3);
+        endOfPage = previousPageSource.equals(driver.getPageSource());
+        return endOfPage;
+    }
+
+
 }

@@ -9,12 +9,13 @@ import com.pinelabs.RnD.AndroidUI.POM.PaymentsApp.PaymentsUPIValidationsPage;
 import com.pinelabs.RnD.CommonUtils.CommonUtility;
 import com.pinelabs.RnD.CommonUtils.ExcelUtility;
 import com.pinelabs.RnD.CommonUtils.ExtentSparkReportUtility;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
     CommonHelperPage commonHelperPageInstance;
     Map<Object, Object> value = new HashMap<>();
 
-   //  @BeforeClass
+    //  @BeforeClass
     public void getInstances() {
         AppiumUtilities.setUpConnection();
         paymentsUPIValidationInstance = getPaymentsUPIValidationInstance();
@@ -34,18 +35,20 @@ public class PaymentsUPIValidationsTest extends TestUtils {
         upiCallbackIciciInstance = UpiCallbackIcici.getInstance(UpiCallbackIcici.defaultrequest);
 
     }
-    @DataProvider(name = "NewData")
-    public Object[][] checkExcelUtil(){
 
-        Object[][] values=   ExcelUtility.excelFileReading();
+    @DataProvider(name = "NewData")
+    public Object[][] checkExcelUtil() {
+
+        Object[][] values = ExcelUtility.excelFileReading();
         return values;
     }
+
     @Test(dataProvider = "NewData")
-    public void m2(){
-         ExcelUtility.excelFileReading();
+    public void m2() {
+        ExcelUtility.excelFileReading();
     }
 
-      // @BeforeSuite
+    // @BeforeSuite
     public void m1() {
         ExtentSparkReportUtility.initialise();
     }
@@ -91,9 +94,7 @@ public class PaymentsUPIValidationsTest extends TestUtils {
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErroCode(), "00");
 //        Assert.assertEquals(upiCallbackIciciInstance.getResponse().getErrorMsg(), "Success");
 
-
     }
-
 
     @Test(description = "Verify the ICICI UPI \"Charge\" Transaction.")
     public void iCICI_UPI_002() {
