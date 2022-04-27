@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-Automation" class="navigator-link">
+              <span class="suite-name border-failed">Automation</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-Automation" class="navigator-link ">
+                    <span>D:\Projects\ParagonAutomationFramework\testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-Automation" class="navigator-link ">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-Automation" class="navigator-link ">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-Automation" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-Automation" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-Automation" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-Automation" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">13 methods, 2 failed,   11 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Automation" class="hide-methods failed suite-Automation"> (hide)</a> <!-- hide-methods failed suite-Automation -->
+                      <a href="#" panel-name="suite-Automation" class="show-methods failed suite-Automation"> (show)</a> <!-- show-methods failed suite-Automation -->
+                    </span>
+                    <div class="method-list-content failed suite-Automation">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.ApproveMerchantTest" class="method navigator-link" hash-for-method="ApproveMerchant(AutomatedMerchant037, Success)">ApproveMerchant(AutomatedMerchant037, Success)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.ApproveMerchantTest" class="method navigator-link" hash-for-method="ApproveMerchant(Null, Fail)">ApproveMerchant(Null, Fail)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Automation -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Automation" class="hide-methods passed suite-Automation"> (hide)</a> <!-- hide-methods passed suite-Automation -->
+                      <a href="#" panel-name="suite-Automation" class="show-methods passed suite-Automation"> (show)</a> <!-- show-methods passed suite-Automation -->
+                    </span>
+                    <div class="method-list-content passed suite-Automation">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.ApproveMerchantTest" class="method navigator-link" hash-for-method="ApproveMerchant(AutomatedMerchant040, Fail)">ApproveMerchant(AutomatedMerchant040, Fail)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.ApproveMerchantTest" class="method navigator-link" hash-for-method="ApproveMerchant(jhsdfhdfkfd, Fail)">ApproveMerchant(jhsdfhdfkfd, Fail)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.CreateMerchantTest" class="method navigator-link" hash-for-method="CreateMerchant(AutomatedMerchant049, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)">CreateMerchant(AutomatedMerchant049, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.CreateMerchantTest" class="method navigator-link" hash-for-method="CreateMerchant(AutomatedMerchant048, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)">CreateMerchant(AutomatedMerchant048, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.CreateMerchantTest" class="method navigator-link" hash-for-method="CreateMerchant(AutomatedMerchant050, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)">CreateMerchant(AutomatedMerchant050, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.PCUILoginTest" class="method navigator-link" hash-for-method="login(prakher.agarwal, abc, blocked)">login(prakher.agarwal, abc, blocked)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.PCUILoginTest" class="method navigator-link" hash-for-method="login(prakheragarwaljsk, abc, Invalid credentials)">login(prakheragarwaljsk, abc, Invalid credentials)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.PCUILoginTest" class="method navigator-link" hash-for-method="login(testuser, abc, Invalid credentials)">login(testuser, abc, Invalid credentials)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.PCUILoginTest" class="method navigator-link" hash-for-method="login(prakher.agarwal1, null, Invalid credentials)">login(prakher.agarwal1, null, Invalid credentials)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.PCUILoginTest" class="method navigator-link" hash-for-method="login(null, Pinelabs@123, Invalid credentials)">login(null, Pinelabs@123, Invalid credentials)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Automation" title="com.pinelabs.RnD.WebUITest.PCUILoginTest" class="method navigator-link" hash-for-method="login(prakheragarwal, Pinelabs@123, valid credentials)">login(prakheragarwal, Pinelabs@123, valid credentials)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Automation -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Automation" class="panel Automation">
+          <div class="suite-Automation-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.pinelabs.RnD.WebUITest.ApproveMerchantTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ApproveMerchant(AutomatedMerchant037, Success)">
+                  </a> <!-- ApproveMerchant(AutomatedMerchant037, Success) -->
+                  <span class="method-name">ApproveMerchant</span>
+                  <span class="parameters">(AutomatedMerchant037, Success)</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@class=&apos;alertify-message&apos;] (tried for 30 second(s) with 500 MILLISECONDS interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:82)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.pinelabs.RnD.WebUI.Base.SeleniumUtilities.getElement(SeleniumUtilities.java:629)
+	at com.pinelabs.RnD.WebUI.Base.SeleniumUtilities.getTextOfElement(SeleniumUtilities.java:420)
+	at com.pinelabs.RnD.WebUI.POM.ManageMerchant.MerchantApprovalMessageValidation(ManageMerchant.java:164)
+	at com.pinelabs.RnD.WebUITest.ApproveMerchantTest.ApproveMerchant(ApproveMerchantTest.java:51)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.xpath: //*[@class=&apos;alertify-message&apos;]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.9.1&apos;, revision: &apos;63f7b50&apos;, time: &apos;2018-02-07T22:25:02.294Z&apos;
+System info: host: &apos;PINENOIL16097&apos;, ip: &apos;192.168.1.7&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.1&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 32 more
+... Removed 27 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ApproveMerchant(Null, Fail)">
+                  </a> <!-- ApproveMerchant(Null, Fail) -->
+                  <span class="method-name">ApproveMerchant</span>
+                  <span class="parameters">(Null, Fail)</span>
+                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;input type=&quot;submit&quot; name=&quot;ctl00$ContentPlaceHolder1$SaerchMerchantBtn&quot; value=&quot;Search&quot; onclick=&quot;javascript:return ValidateFields();&quot; id=&quot;SaerchMerchantBtn&quot; class=&quot;btn btn-red1&quot; style=&quot;border: 3px solid cyan;&quot;&gt; is not clickable at point (836, 210). Other element would receive the click: &lt;div id=&quot;divBackground&quot; style=&quot;position: absolute; top: 0px; left: 0px; background-color: black; z-index: 999; opacity: 0.8; overflow: hidden; display: block; height: 564px; width: 100%;&quot;&gt;...&lt;/div&gt;
+  (Session info: chrome=100.0.4896.127)
+Build info: version: &apos;3.9.1&apos;, revision: &apos;63f7b50&apos;, time: &apos;2018-02-07T22:25:02.294Z&apos;
+System info: host: &apos;PINENOIL16097&apos;, ip: &apos;192.168.1.7&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\PRAKHE~1.AGA\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:51012}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c5cfaf95d185d7579791cd55addd68e2
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:160)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at com.pinelabs.RnD.WebUI.Base.SeleniumUtilities.clickOnElement(SeleniumUtilities.java:352)
+	at com.pinelabs.RnD.WebUI.POM.ManageMerchant.ApproveMerchant(ManageMerchant.java:124)
+	at com.pinelabs.RnD.WebUITest.ApproveMerchantTest.ApproveMerchant(ApproveMerchantTest.java:50)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 32 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Automation-class-failed -->
+          <div class="suite-Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.pinelabs.RnD.WebUITest.CreateMerchantTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="CreateMerchant(AutomatedMerchant049, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)">
+                  </a> <!-- CreateMerchant(AutomatedMerchant049, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...) -->
+                  <span class="method-name">CreateMerchant</span>
+                  <span class="parameters">(AutomatedMerchant049, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.999999998E9, 9.999999998E9, a@r.com, Fail)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="CreateMerchant(AutomatedMerchant048, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)">
+                  </a> <!-- CreateMerchant(AutomatedMerchant048, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...) -->
+                  <span class="method-name">CreateMerchant</span>
+                  <span class="parameters">(AutomatedMerchant048, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.999999998E9, 9.999999998E9, a@r.com, Fail)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="CreateMerchant(AutomatedMerchant050, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)">
+                  </a> <!-- CreateMerchant(AutomatedMerchant050, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...) -->
+                  <span class="method-name">CreateMerchant</span>
+                  <span class="parameters">(AutomatedMerchant050, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.999999998E9, 9.999999998E9, a@r.com, Fail)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Automation-class-passed -->
+          <div class="suite-Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.pinelabs.RnD.WebUITest.PCUILoginTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="login(prakher.agarwal, abc, blocked)">
+                  </a> <!-- login(prakher.agarwal, abc, blocked) -->
+                  <span class="method-name">login</span>
+                  <span class="parameters">(prakher.agarwal, abc, blocked)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login(prakheragarwaljsk, abc, Invalid credentials)">
+                  </a> <!-- login(prakheragarwaljsk, abc, Invalid credentials) -->
+                  <span class="method-name">login</span>
+                  <span class="parameters">(prakheragarwaljsk, abc, Invalid credentials)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login(testuser, abc, Invalid credentials)">
+                  </a> <!-- login(testuser, abc, Invalid credentials) -->
+                  <span class="method-name">login</span>
+                  <span class="parameters">(testuser, abc, Invalid credentials)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login(prakher.agarwal1, null, Invalid credentials)">
+                  </a> <!-- login(prakher.agarwal1, null, Invalid credentials) -->
+                  <span class="method-name">login</span>
+                  <span class="parameters">(prakher.agarwal1, null, Invalid credentials)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login(null, Pinelabs@123, Invalid credentials)">
+                  </a> <!-- login(null, Pinelabs@123, Invalid credentials) -->
+                  <span class="method-name">login</span>
+                  <span class="parameters">(null, Pinelabs@123, Invalid credentials)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login(prakheragarwal, Pinelabs@123, valid credentials)">
+                  </a> <!-- login(prakheragarwal, Pinelabs@123, valid credentials) -->
+                  <span class="method-name">login</span>
+                  <span class="parameters">(prakheragarwal, Pinelabs@123, valid credentials)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Automation-class-passed -->
+          <div class="suite-Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.pinelabs.RnD.WebUITest.ApproveMerchantTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ApproveMerchant(AutomatedMerchant040, Fail)">
+                  </a> <!-- ApproveMerchant(AutomatedMerchant040, Fail) -->
+                  <span class="method-name">ApproveMerchant</span>
+                  <span class="parameters">(AutomatedMerchant040, Fail)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ApproveMerchant(jhsdfhdfkfd, Fail)">
+                  </a> <!-- ApproveMerchant(jhsdfhdfkfd, Fail) -->
+                  <span class="method-name">ApproveMerchant</span>
+                  <span class="parameters">(jhsdfhdfkfd, Fail)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Automation-class-passed -->
+        </div> <!-- panel Automation -->
+        <div panel-name="test-xml-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">D:\Projects\ParagonAutomationFramework\testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Automation&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;Test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.pinelabs.RnD.WebUITest.PCUILoginTest&quot;/&gt;
+      &lt;class name=&quot;com.pinelabs.RnD.WebUITest.CreateMerchantTest&quot;/&gt;
+      &lt;class name=&quot;com.pinelabs.RnD.WebUITest.ApproveMerchantTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test --&gt;
+&lt;/suite&gt; &lt;!-- Automation --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Test (3 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Automation');
+function tableData_Automation() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(13);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'ApproveMerchant')
+data.setCell(0, 2, 'com.pinelabs.RnD.WebUITest.ApproveMerchantTest')
+data.setCell(0, 3, 31881);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'ApproveMerchant')
+data.setCell(1, 2, 'com.pinelabs.RnD.WebUITest.ApproveMerchantTest')
+data.setCell(1, 3, 31283);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'ApproveMerchant')
+data.setCell(2, 2, 'com.pinelabs.RnD.WebUITest.ApproveMerchantTest')
+data.setCell(2, 3, 30729);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'CreateMerchant')
+data.setCell(3, 2, 'com.pinelabs.RnD.WebUITest.CreateMerchantTest')
+data.setCell(3, 3, 4897);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'CreateMerchant')
+data.setCell(4, 2, 'com.pinelabs.RnD.WebUITest.CreateMerchantTest')
+data.setCell(4, 3, 4547);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'CreateMerchant')
+data.setCell(5, 2, 'com.pinelabs.RnD.WebUITest.CreateMerchantTest')
+data.setCell(5, 3, 3862);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'login')
+data.setCell(6, 2, 'com.pinelabs.RnD.WebUITest.PCUILoginTest')
+data.setCell(6, 3, 2571);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'ApproveMerchant')
+data.setCell(7, 2, 'com.pinelabs.RnD.WebUITest.ApproveMerchantTest')
+data.setCell(7, 3, 1261);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'login')
+data.setCell(8, 2, 'com.pinelabs.RnD.WebUITest.PCUILoginTest')
+data.setCell(8, 3, 703);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'login')
+data.setCell(9, 2, 'com.pinelabs.RnD.WebUITest.PCUILoginTest')
+data.setCell(9, 3, 694);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'login')
+data.setCell(10, 2, 'com.pinelabs.RnD.WebUITest.PCUILoginTest')
+data.setCell(10, 3, 604);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'login')
+data.setCell(11, 2, 'com.pinelabs.RnD.WebUITest.PCUILoginTest')
+data.setCell(11, 3, 593);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'login')
+data.setCell(12, 2, 'com.pinelabs.RnD.WebUITest.PCUILoginTest')
+data.setCell(12, 3, 526);
+window.suiteTableData['Automation']= { tableData: data, tableDiv: 'times-div-Automation'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <div id="times-div-Automation">
+              </div> <!-- times-div-Automation -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.pinelabs.RnD.WebUITest.PCUILoginTest</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">getInstances</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login(prakher.agarwal, abc, blocked)</span>
+                <span class="method-start">11768 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tear</span>
+                <span class="method-start">12466 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">getInstances</span>
+                <span class="method-start">13408 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login(prakheragarwaljsk, abc, Invalid credentials)</span>
+                <span class="method-start">20761 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tear</span>
+                <span class="method-start">21465 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">getInstances</span>
+                <span class="method-start">22371 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login(testuser, abc, Invalid credentials)</span>
+                <span class="method-start">28412 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tear</span>
+                <span class="method-start">29007 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">getInstances</span>
+                <span class="method-start">29754 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login(prakheragarwal, Pinelabs@123, valid credentials)</span>
+                <span class="method-start">36719 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tear</span>
+                <span class="method-start">39291 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">getInstances</span>
+                <span class="method-start">40013 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login(prakher.agarwal1, null, Invalid credentials)</span>
+                <span class="method-start">46431 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tear</span>
+                <span class="method-start">47036 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">getInstances</span>
+                <span class="method-start">47884 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login(null, Pinelabs@123, Invalid credentials)</span>
+                <span class="method-start">54727 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tear</span>
+                <span class="method-start">55254 ms</span>
+              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.pinelabs.RnD.WebUITest.CreateMerchantTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">applicationSetup</span>
+                <span class="method-start">55865 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">CreateMerchant(AutomatedMerchant048, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)</span>
+                <span class="method-start">67725 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">CreateMerchant(AutomatedMerchant049, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)</span>
+                <span class="method-start">72624 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">CreateMerchant(AutomatedMerchant050, CIMB, RM, Address Auto Filled, Malaysia, Johor, MUAR, 201001.0, Automated, 9.9...)</span>
+                <span class="method-start">77173 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">VerifyMerchant</span>
+                <span class="method-start">81036 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.pinelabs.RnD.WebUITest.ApproveMerchantTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">applicationSetup</span>
+                <span class="method-start">82025 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">ApproveMerchant(jhsdfhdfkfd, Fail)</span>
+                <span class="method-start">91253 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">ApproveMerchant(AutomatedMerchant040, Fail)</span>
+                <span class="method-start">121983 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">ApproveMerchant(AutomatedMerchant037, Success)</span>
+                <span class="method-start">153865 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">ApproveMerchant(Null, Fail)</span>
+                <span class="method-start">185150 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">VerifyMerchant</span>
+                <span class="method-start">186412 ms</span>
+              </div> <!-- configuration-class after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>

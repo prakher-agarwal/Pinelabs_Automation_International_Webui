@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="13" passed="11" failed="2" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-04-22T10:19:25 IST" name="Automation" finished-at="2022-04-22T10:22:34 IST" duration-ms="188663">
+    <groups>
+    </groups>
+    <test started-at="2022-04-22T10:19:25 IST" name="Test" finished-at="2022-04-22T10:22:34 IST" duration-ms="188663">
+      <class name="com.pinelabs.RnD.WebUITest.ApproveMerchantTest">
+        <test-method is-config="true" signature="applicationSetup()[pri:0, instance:com.pinelabs.RnD.WebUITest.ApproveMerchantTest@2dc54ad4]" started-at="2022-04-22T10:20:48 IST" name="applicationSetup" finished-at="2022-04-22T10:20:57 IST" duration-ms="9199" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- applicationSetup -->
+        <test-method signature="ApproveMerchant(java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.ApproveMerchantTest@2dc54ad4]" started-at="2022-04-22T10:20:57 IST" name="ApproveMerchant" data-provider="getTestData" finished-at="2022-04-22T10:21:28 IST" duration-ms="30729" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[jhsdfhdfkfd]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApproveMerchant -->
+        <test-method signature="ApproveMerchant(java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.ApproveMerchantTest@2dc54ad4]" started-at="2022-04-22T10:21:28 IST" name="ApproveMerchant" data-provider="getTestData" finished-at="2022-04-22T10:22:00 IST" duration-ms="31881" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AutomatedMerchant040]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApproveMerchant -->
+        <test-method signature="ApproveMerchant(java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.ApproveMerchantTest@2dc54ad4]" started-at="2022-04-22T10:22:00 IST" name="ApproveMerchant" data-provider="getTestData" finished-at="2022-04-22T10:22:31 IST" duration-ms="31283" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AutomatedMerchant037]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Success]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //*[@class='alertify-message'] (tried for 30 second(s) with 500 MILLISECONDS interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@class='alertify-message'] (tried for 30 second(s) with 500 MILLISECONDS interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:82)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at com.pinelabs.RnD.WebUI.Base.SeleniumUtilities.getElement(SeleniumUtilities.java:629)
+at com.pinelabs.RnD.WebUI.Base.SeleniumUtilities.getTextOfElement(SeleniumUtilities.java:420)
+at com.pinelabs.RnD.WebUI.POM.ManageMerchant.MerchantApprovalMessageValidation(ManageMerchant.java:164)
+at com.pinelabs.RnD.WebUITest.ApproveMerchantTest.ApproveMerchant(ApproveMerchantTest.java:51)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.xpath: //*[@class='alertify-message']
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.9.1', revision: '63f7b50', time: '2018-02-07T22:25:02.294Z'
+System info: host: 'PINENOIL16097', ip: '192.168.1.7', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'
+Driver info: driver.version: unknown
+at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
+at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+... 32 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApproveMerchant -->
+        <test-method signature="ApproveMerchant(java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.ApproveMerchantTest@2dc54ad4]" started-at="2022-04-22T10:22:31 IST" name="ApproveMerchant" data-provider="getTestData" finished-at="2022-04-22T10:22:32 IST" duration-ms="1261" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Null]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <input type="submit" name="ctl00$ContentPlaceHolder1$SaerchMerchantBtn" value="Search" onclick="javascript:return ValidateFields();" id="SaerchMerchantBtn" class="btn btn-red1" style="border: 3px solid cyan;"> is not clickable at point (836, 210). Other element would receive the click: <div id="divBackground" style="position: absolute; top: 0px; left: 0px; background-color: black; z-index: 999; opacity: 0.8; overflow: hidden; display: block; height: 564px; width: 100%;">...</div>
+  (Session info: chrome=100.0.4896.127)
+Build info: version: '3.9.1', revision: '63f7b50', time: '2018-02-07T22:25:02.294Z'
+System info: host: 'PINENOIL16097', ip: '192.168.1.7', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\PRAKHE~1.AGA\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:51012}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c5cfaf95d185d7579791cd55addd68e2]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <input type="submit" name="ctl00$ContentPlaceHolder1$SaerchMerchantBtn" value="Search" onclick="javascript:return ValidateFields();" id="SaerchMerchantBtn" class="btn btn-red1" style="border: 3px solid cyan;"> is not clickable at point (836, 210). Other element would receive the click: <div id="divBackground" style="position: absolute; top: 0px; left: 0px; background-color: black; z-index: 999; opacity: 0.8; overflow: hidden; display: block; height: 564px; width: 100%;">...</div>
+  (Session info: chrome=100.0.4896.127)
+Build info: version: '3.9.1', revision: '63f7b50', time: '2018-02-07T22:25:02.294Z'
+System info: host: 'PINENOIL16097', ip: '192.168.1.7', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\PRAKHE~1.AGA\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:51012}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c5cfaf95d185d7579791cd55addd68e2
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:160)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+at com.pinelabs.RnD.WebUI.Base.SeleniumUtilities.clickOnElement(SeleniumUtilities.java:352)
+at com.pinelabs.RnD.WebUI.POM.ManageMerchant.ApproveMerchant(ManageMerchant.java:124)
+at com.pinelabs.RnD.WebUITest.ApproveMerchantTest.ApproveMerchant(ApproveMerchantTest.java:50)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApproveMerchant -->
+        <test-method is-config="true" signature="VerifyMerchant()[pri:0, instance:com.pinelabs.RnD.WebUITest.ApproveMerchantTest@2dc54ad4]" started-at="2022-04-22T10:22:32 IST" name="VerifyMerchant" finished-at="2022-04-22T10:22:34 IST" duration-ms="1487" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifyMerchant -->
+      </class> <!-- com.pinelabs.RnD.WebUITest.ApproveMerchantTest -->
+      <class name="com.pinelabs.RnD.WebUITest.PCUILoginTest">
+        <test-method is-config="true" signature="getInstances()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:26 IST" name="getInstances" finished-at="2022-04-22T10:19:38 IST" duration-ms="11760" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInstances -->
+        <test-method signature="login(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:38 IST" name="login" data-provider="getTestData" finished-at="2022-04-22T10:19:38 IST" duration-ms="694" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[prakher.agarwal]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abc]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[blocked]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tear()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:38 IST" name="tear" finished-at="2022-04-22T10:19:39 IST" duration-ms="941" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tear -->
+        <test-method is-config="true" signature="getInstances()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:39 IST" name="getInstances" finished-at="2022-04-22T10:19:47 IST" duration-ms="7351" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInstances -->
+        <test-method signature="login(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:47 IST" name="login" data-provider="getTestData" finished-at="2022-04-22T10:19:47 IST" duration-ms="703" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[prakheragarwaljsk]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abc]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid credentials]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tear()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:47 IST" name="tear" finished-at="2022-04-22T10:19:48 IST" duration-ms="905" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tear -->
+        <test-method is-config="true" signature="getInstances()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:48 IST" name="getInstances" finished-at="2022-04-22T10:19:54 IST" duration-ms="6041" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInstances -->
+        <test-method signature="login(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:54 IST" name="login" data-provider="getTestData" finished-at="2022-04-22T10:19:55 IST" duration-ms="593" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[testuser]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[abc]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid credentials]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tear()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:55 IST" name="tear" finished-at="2022-04-22T10:19:56 IST" duration-ms="747" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tear -->
+        <test-method is-config="true" signature="getInstances()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:19:56 IST" name="getInstances" finished-at="2022-04-22T10:20:03 IST" duration-ms="6965" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInstances -->
+        <test-method signature="login(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:03 IST" name="login" data-provider="getTestData" finished-at="2022-04-22T10:20:05 IST" duration-ms="2571" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[prakheragarwal]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Pinelabs@123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[valid credentials]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tear()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:05 IST" name="tear" finished-at="2022-04-22T10:20:06 IST" duration-ms="722" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tear -->
+        <test-method is-config="true" signature="getInstances()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:06 IST" name="getInstances" finished-at="2022-04-22T10:20:12 IST" duration-ms="6418" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInstances -->
+        <test-method signature="login(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:12 IST" name="login" data-provider="getTestData" finished-at="2022-04-22T10:20:13 IST" duration-ms="604" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[prakher.agarwal1]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[null]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid credentials]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tear()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:13 IST" name="tear" finished-at="2022-04-22T10:20:14 IST" duration-ms="848" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tear -->
+        <test-method is-config="true" signature="getInstances()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:14 IST" name="getInstances" finished-at="2022-04-22T10:20:21 IST" duration-ms="6843" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInstances -->
+        <test-method signature="login(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:21 IST" name="login" data-provider="getTestData" finished-at="2022-04-22T10:20:21 IST" duration-ms="526" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[null]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Pinelabs@123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid credentials]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tear()[pri:0, instance:com.pinelabs.RnD.WebUITest.PCUILoginTest@5ba3f27a]" started-at="2022-04-22T10:20:21 IST" name="tear" finished-at="2022-04-22T10:20:22 IST" duration-ms="608" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tear -->
+      </class> <!-- com.pinelabs.RnD.WebUITest.PCUILoginTest -->
+      <class name="com.pinelabs.RnD.WebUITest.CreateMerchantTest">
+        <test-method is-config="true" signature="applicationSetup()[pri:0, instance:com.pinelabs.RnD.WebUITest.CreateMerchantTest@1151e434]" started-at="2022-04-22T10:20:22 IST" name="applicationSetup" finished-at="2022-04-22T10:20:34 IST" duration-ms="11805" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- applicationSetup -->
+        <test-method signature="CreateMerchant(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.CreateMerchantTest@1151e434]" started-at="2022-04-22T10:20:34 IST" name="CreateMerchant" data-provider="getTestData" finished-at="2022-04-22T10:20:38 IST" duration-ms="4897" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AutomatedMerchant048]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[CIMB]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[RM]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Address Auto Filled]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Malaysia]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Johor]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[MUAR]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[201001.0]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Automated]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[9.999999998E9]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[9.999999998E9]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[a@r.com]]>
+              </value>
+            </param>
+            <param index="12">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateMerchant -->
+        <test-method signature="CreateMerchant(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.CreateMerchantTest@1151e434]" started-at="2022-04-22T10:20:38 IST" name="CreateMerchant" data-provider="getTestData" finished-at="2022-04-22T10:20:43 IST" duration-ms="4547" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AutomatedMerchant049]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[CIMB]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[RM]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Address Auto Filled]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Malaysia]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Johor]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[MUAR]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[201001.0]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Automated]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[9.999999998E9]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[9.999999998E9]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[a@r.com]]>
+              </value>
+            </param>
+            <param index="12">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateMerchant -->
+        <test-method signature="CreateMerchant(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.pinelabs.RnD.WebUITest.CreateMerchantTest@1151e434]" started-at="2022-04-22T10:20:43 IST" name="CreateMerchant" data-provider="getTestData" finished-at="2022-04-22T10:20:47 IST" duration-ms="3862" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[AutomatedMerchant050]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[CIMB]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[RM]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Address Auto Filled]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Malaysia]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Johor]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[MUAR]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[201001.0]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Automated]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[9.999999998E9]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[9.999999998E9]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[a@r.com]]>
+              </value>
+            </param>
+            <param index="12">
+              <value>
+                <![CDATA[Fail]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateMerchant -->
+        <test-method is-config="true" signature="VerifyMerchant()[pri:0, instance:com.pinelabs.RnD.WebUITest.CreateMerchantTest@1151e434]" started-at="2022-04-22T10:20:47 IST" name="VerifyMerchant" finished-at="2022-04-22T10:20:48 IST" duration-ms="988" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifyMerchant -->
+      </class> <!-- com.pinelabs.RnD.WebUITest.CreateMerchantTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Automation -->
+</testng-results>
